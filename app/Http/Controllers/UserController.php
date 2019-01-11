@@ -46,12 +46,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::paginate(15);
+        $users = User::all();
 
         // Add sidebar menu items
-        $menu = Menu::get('sidebar');
-        $menu->add('Maak nieuwe gebruiker', ['route' => 'user.create']);
-        $menu->add('Leden', ['route' => 'user.members']);
+        // $menu = Menu::get('sidebar');
+        // $menu->add('Maak nieuwe gebruiker', ['route' => 'user.create']);
+        // $menu->add('Leden', ['route' => 'user.members']);
 
         return view('user.index', compact('users'));
     }
@@ -294,7 +294,7 @@ class UserController extends Controller
      */
     public function members(Request $request)
     {
-        $members = User::where('user_category_alias', '=', 'lid')->paginate(15);
+        $members = User::where('user_category_alias', '=', 'lid')->get();
 
         return view('user.members', compact('members'));
     }

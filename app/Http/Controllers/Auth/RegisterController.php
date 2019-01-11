@@ -11,6 +11,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Jrean\UserVerification\Traits\VerifiesUsers;
 use Jrean\UserVerification\Facades\UserVerification;
+use App\Notifications\AdminNewUser;
 
 class RegisterController extends Controller
 {
@@ -87,7 +88,7 @@ class RegisterController extends Controller
             'first_name' => 'required|regex:/^[a-zàâçéèêëîïôûùüÿñæœ\'\s-]+$/i|max:255',
             'name_prefix' => 'regex:/^[a-zàâçéèêëîïôûùüÿñæœ\'\s-]+$/i|max:16',
             'last_name' => 'required|regex:/^[a-zàâçéèêëîïôûùüÿñæœ\'\s-]+$/i|max:255',
-            'email' => 'required|email|regex:/^[a-zA-Z0-9._%+-]+@hz.nl$/|max:255|unique:users',
+            'email' => 'required',//|email|regex:/^[a-zA-Z0-9._%+-]+@hz.nl$/|max:255|unique:users',
             'phone_number' => 'required',//|regex:/(^\+[0-9]{2}|^\+[0-9]{2}\(0\)|^\(\+[0-9]{2}\)\(0\)|^00[0-9]{2}|^0)([0-9]{9}$|[0-9\-\s]{10}$)/',
             'address' => ['required', 'regex:/^([1-9][e][\s])*([a-zA-Z]+(([\.][\s])|([\s]))?)+[1-9][0-9]*(([-][1-9][0-9]*)|([\s]?[a-zA-Z]+))?$/i', 'max:255'],
             'zip_code' => ['required', 'regex:/^[1-9][0-9]{3} ?(?!sa|sd|ss)[a-z]{2}$/i', 'max:7'],
@@ -121,6 +122,8 @@ class RegisterController extends Controller
         // Fire 'UserCreatedOrChanged' event
         event(new UserCreatedOrChanged($user));
 
+        $admin = User::where('email', 'meel0028@hz.nl')->first();
+        $admin->notify(new AdminNewUser($user['first_name'], $user['name_prefix'], $user['last_name'], $user['phone_number'], $user['email']));
         return $user;
     }
 }

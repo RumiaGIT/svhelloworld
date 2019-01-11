@@ -28,6 +28,14 @@
                                 @date($activity->available_from) t/m @date($activity->available_to)
                             </td>
                         </tr>
+                        @if($activity->member_limit)
+                            <tr>
+                                <td>Maximaal aantal plekken beschikbaar</td>
+                                <td>
+                                    {{ $activity->member_limit }}
+                                </td>
+                            </tr>
+                        @endif
                         <tr>
                             <td>Prijs</td>
                             @if($activity_price)

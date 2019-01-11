@@ -6,7 +6,7 @@
         <p>Dit is een overzicht van jouw aanmeldingen voor activiteiten.</p>
 
         <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover">
+            <table id="activities-entry-index-table" class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
                         <th>Naam</th>

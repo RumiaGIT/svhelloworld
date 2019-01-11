@@ -9,6 +9,7 @@ use App\ActivityEntry;
 use Illuminate\Http\Request;
 use App\Events\UserAppliedForActivity;
 use App\Notifications\ActivityEntryConfirmed;
+use Carbon\Carbon;
 
 class ActivityEntryController extends Controller
 {
@@ -88,6 +89,21 @@ class ActivityEntryController extends Controller
         // Get the activity information
         $activity = Activity::findOrFail($id);
 
+        //get today's date
+        $today = Carbon::today();
+
+        //Check if join date hasn't expired
+        if(!($activity->available_from <= $today && $activity->available_to >= $today)) {
+            flash('Aanmeldperiode is verlopen.', 'info');
+            return redirect(route('activity.show', $activity->id));
+        }
+
+        //Check member limit
+        if($activity->entries()->count() >= $activity->member_limit && $activity->member_limit != 0 && $activity->member_limit != null) {
+            flash('Het is niet meer mogelijk om je aan te melden voor deze acitviteit want, de activiteit heeft het maximum aantal deelnemers bereikt.', 'info');
+            return redirect(route('activity.show', $activity->id));
+        }
+
         // Check if the user already has
         $activity_entry = ActivityEntry::where([
             ['user_id', $user->id],
@@ -96,7 +112,6 @@ class ActivityEntryController extends Controller
 
         if ($activity_entry) {
             flash('Je kunt je niet aanmelden voor deze activiteit, omdat je je al hebt aangemeld.', 'info');
-
             return redirect(route('activity.show', $activity->id));
         }
 

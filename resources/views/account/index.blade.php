@@ -29,7 +29,7 @@
                         </tr>
                         <tr>
                             <td>Geregistreerd als</td>
-                            <td colspan="2">{{ $user->role ? $user->role->title : 'Normale gebruiker' }}</td>
+                            <td colspan="2">{{ $userAccountType }}</td>
                         </tr>
                     </tbody>
                 </table>

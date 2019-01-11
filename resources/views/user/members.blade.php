@@ -5,7 +5,7 @@
     <p>Er zijn momenteel {{ count($members) }} leden.</p>
 
     <div class="table-responsive">
-        <table class="table table-bordered table-striped table-hover">
+        <table id="user-members-table" class="table table-bordered table-striped table-hover">
             <thead>
                 <tr>
                     <th></th>
@@ -29,6 +29,4 @@
             </tbody>
         </table>
     </div>
-
-    <div class="pagination-wrapper">{!! $members->render() !!}</div>
 @endsection

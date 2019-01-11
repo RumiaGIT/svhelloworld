@@ -2,7 +2,11 @@
 @section('title', 'Activiteiten aanmaken')
 
 @section('content')
-    <p>Formulier om een evenement aan te maken.</p>
+    <p>
+        Formulier om een evenement aan te maken.<br>
+        Let op: als het evenement gratis is vul dan 0.00 in.<br>
+        Wil je geen deelnemer limiet instellen? Laat dan het veld "Maxiamaal aantal leden" leeg.
+    </p>
 
     <div class="row">
         <div class="col-xs-12">
@@ -22,6 +26,36 @@
                     <div class="col-sm-8">
                         <textarea type="text" name="description" id="description" class="form-control">{{ old('description') }}</textarea>
                         {!! $errors->first('description', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+
+                <div class="form-group {{ $errors->has('event_price_member') ? 'has-error' : ''}}">
+                    <label for="event_price_member" class="control-label col-sm-4">Prijs leden *</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <div class="input-group-addon">€</div>
+                            <input type="int" name="event_price_member" id="event_price_member" value="{{ old('event_price_member') }}" class="form-control">
+                        </div>
+                        {!! $errors->first('event_price_member', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+
+                <div class="form-group {{ $errors->has('event_price_non_member') ? 'has-error' : ''}}">
+                    <label for="event_price_non_member" class="control-label col-sm-4">Prijs geen leden *</label>
+                    <div class="col-sm-8">
+                        <div class="input-group">
+                            <div class="input-group-addon">€</div>
+                            <input type="int" name="event_price_non_member" id="event_price_non_member" value="{{ old('event_price_non_member') }}" class="form-control">
+                        </div>
+                        {!! $errors->first('event_price_non_member', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+
+                <div class="form-group {{ $errors->has('member_limit') ? 'has-error' : ''}}">
+                    <label for="member_limit" class="control-label col-sm-4">Maximaal aantal deelnemers</label>
+                    <div class="col-sm-8">
+                            <input type="int" name="member_limit" id="member_limit" value="{{ old('member_limit') }}" class="form-control">
+                        {!! $errors->first('member_limit', '<p class="help-block">:message</p>') !!}
                     </div>
                 </div>
 

@@ -1,11 +1,11 @@
 var gulp = require('gulp'),
-    autoprefixer = require('gulp-autoprefixer'),
-    clean = require('gulp-clean'),
-    concat = require('gulp-concat'),
-    gutil = require('gulp-util'),
-    livereload = require('gulp-livereload'),
-    sass = require('gulp-sass'),
-    uglify = require('gulp-uglify');
+autoprefixer = require('gulp-autoprefixer'),
+clean = require('gulp-clean'),
+concat = require('gulp-concat'),
+gutil = require('gulp-util'),
+livereload = require('gulp-livereload'),
+sass = require('gulp-sass'),
+uglify = require('gulp-uglify');
 
 var stylesheets = {
     app: [
@@ -13,6 +13,7 @@ var stylesheets = {
     ],
     vendor: [
         'resources/assets/sass/vendor.scss',
+        'node_modules/datatables.net-bs/css/dataTables.bootstrap.min.css',
     ],
 };
 
@@ -21,77 +22,81 @@ var scripts = {
         'resources/assets/js/**/*.js',
     ],
     vendor: [
-        'node_modules/jquery/dist/jquery.slim.min.js',
+        'node_modules/jquery/dist/jquery.min.js',
+        'node_modules/datatables.net/js/jquery.dataTables.min.js',
+        'node_modules/datatables.net-bs/js/dataTables.bootstrap.min.js',
+        'node_modules/moment/min/moment.min.js'
     ],
 };
 
 var fonts = [
     'node_modules/font-awesome/fonts/*',
+    'node_modules/bootstrap-sass/assets/fonts/bootstrap/*'
 ];
 
 gulp.task('blade', function() {
     return gulp.src('resources/views/**/*.blade.php')
-        .pipe(livereload())
+    .pipe(livereload())
     ;
 });
 
 gulp.task('stylesheets_vendor', function() {
     return gulp.src(stylesheets.vendor)
-        .pipe(sass({outputStyle: 'compressed'}).on('error', function(error) {
-            gutil.log(gutil.colors.red(error.formatted));
-            this.emit('end');
-        }))
-        .pipe(autoprefixer())
-        .pipe(concat('vendor.min.css'))
-        .pipe(gulp.dest('public/css'))
+    .pipe(sass({outputStyle: 'compressed'}).on('error', function(error) {
+        gutil.log(gutil.colors.red(error.formatted));
+        this.emit('end');
+    }))
+    .pipe(autoprefixer())
+    .pipe(concat('vendor.min.css'))
+    .pipe(gulp.dest('public/css'))
     ;
 });
 
 gulp.task('stylesheets_app', function() {
     return gulp.src(stylesheets.app)
-        .pipe(sass({outputStyle: 'compressed'}).on('error', function(error) {
-            gutil.log(gutil.colors.red(error.formatted));
-            this.emit('end');
-        }))
-        .pipe(autoprefixer())
-        .pipe(concat('app.min.css'))
-        .pipe(gulp.dest('public/css'))
-        .pipe(livereload())
+    .pipe(sass({outputStyle: 'compressed'}).on('error', function(error) {
+        gutil.log(gutil.colors.red(error.formatted));
+        this.emit('end');
+    }))
+    .pipe(autoprefixer())
+    .pipe(concat('app.min.css'))
+    .pipe(gulp.dest('public/css'))
+    .pipe(livereload())
     ;
 });
 
 gulp.task('scripts_vendor', function() {
     return gulp.src(scripts.vendor)
-        .pipe(uglify().on('error', function(error) {
-            gutil.log(error);
-            this.emit('end');
-        }))
-        .pipe(concat('vendor.min.js'))
-        .pipe(gulp.dest('public/js'))
+    .pipe(uglify().on('error', function(error) {
+        gutil.log(error);
+        this.emit('end');
+    }))
+    .pipe(concat('vendor.min.js'))
+    .pipe(gulp.dest('public/js'))
     ;
 });
 
 gulp.task('scripts_app', function() {
     return gulp.src(scripts.app)
-        .pipe(uglify().on('error', function(error) {
-            gutil.log(error);
-            this.emit('end');
-        }))
-        .pipe(concat('app.min.js'))
-        .pipe(gulp.dest('public/js'))
-        .pipe(livereload())
+    .pipe(uglify().on('error', function(error) {
+        gutil.log(error);
+        this.emit('end');
+    }))
+    .pipe(concat('app.min.js'))
+    .pipe(gulp.dest('public/js'))
+    .pipe(livereload())
     ;
 });
 
 gulp.task('clean_fonts', function() {
     return gulp.src('./public/fonts', { read: false })
-        .pipe(clean({ force: true }))
+    .pipe(clean({ force: true }))
     ;
 });
 
 gulp.task('copy_fonts', ['clean_fonts'], function() {
     return gulp.src(fonts)
-        .pipe(gulp.dest('./public/fonts'))
+    .pipe(gulp.dest('./public/fonts'))
     ;
 });
 

@@ -6,7 +6,7 @@
         <p>Dit is een overzicht van aanmeldingen voor '{{ $activity->title }}'.</p>
 
         <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover">
+            <table id="activities-entries-table" class="table table-bordered table-striped table-hover">
                 <thead>
                     <tr>
                         <th>Naam</th>
@@ -31,8 +31,6 @@
                 </tbody>
             </table>
         </div>
-
-        <div class="pagination-wrapper">{!! $activity_entries->render() !!}</div>
     @else
         <p class="alert alert-info">Er zijn op dit moment geen nieuwe aanmeldingen bekend.</p>
     @endif

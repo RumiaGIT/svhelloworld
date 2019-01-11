@@ -3,8 +3,13 @@
 
 @section('content')
 
+    <p>
+        <a class="btn btn-primary" href="{{ route('user.create') }}">Maak nieuwe gebruiker</a>
+        <a class="btn btn-primary" href="{{ route('user.members') }}">Bekijk alle leden</a>
+    </p>
+
     <div class="table-responsive">
-        <table class="table table-bordered table-striped table-hover">
+        <table id="user-index-table" class="table table-bordered table-striped table-hover">
             <thead>
             <tr>
                 <th></th>
@@ -33,7 +38,5 @@
             </tbody>
         </table>
     </div>
-
-    <div class="pagination-wrapper">{!! $users->render() !!}</div>
 
 @endsection

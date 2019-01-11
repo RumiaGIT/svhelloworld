@@ -16,7 +16,7 @@
             </div>
 
             <div class="form-group {{ $errors->has('name_prefix') ? 'has-error' : ''}}">
-                    {!! Form::label('name_prefix', 'Tussenvoegsel *', ['class' => 'col-sm-4 control-label']) !!}
+                    {!! Form::label('name_prefix', 'Tussenvoegsel', ['class' => 'col-sm-4 control-label']) !!}
                 <div class="col-sm-8">
                     {!! Form::text('name_prefix', null, ['class' => 'form-control']) !!}
                     {!! $errors->first('name_prefix', '<p class="help-block">:message</p>') !!}

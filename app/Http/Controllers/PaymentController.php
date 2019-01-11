@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\AdminNewUserPaid;
 use PDF;
 use Auth;
 use Mollie;
@@ -173,6 +174,8 @@ class PaymentController extends Controller
 
             flash('Bedankt! Je betaling is succesvol verwerkt.', 'success');
 
+            $admin = User::where('email', 'meel0028@hz.nl')->first();
+            $admin->notify(new AdminNewUserPaid($user['first_name'], $user['name_prefix'], $user['last_name'], $user['phone_number'], $user['email']));
             return redirect(route('payment.show', $id));
         }
 
