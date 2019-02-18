@@ -11,7 +11,7 @@
         <p class="alert alert-info">Dit is een Early Bird-contributie. Als je je inschrijft voor <strong>@datetime($contribution->available_to)</strong> bedraagt de contributie slechts <strong>&euro;{{ $contribution->amount }}</strong>!</strong></p>
     @endif
 
-    <p>Controlleer de gegevens in het onderstaande formulier goed! Gegevens kun je aanpassen bij <a href="{{ route('account.edit') }}" target="_blank">accountbeheer</a>.</p>
+    <p>Controleer de gegevens in het onderstaande formulier goed! Gegevens kun je aanpassen bij <a href="{{ route('account.edit') }}" target="_blank">accountbeheer</a>.</p>
 
     <div class="row">
         <div class="col-xs-12">
@@ -25,7 +25,7 @@
             </div>
 
             <div class="form-group">
-                    {!! Form::label('name_prefix', 'Tussenvoegsel *', ['class' => 'col-sm-4 control-label']) !!}
+                    {!! Form::label('name_prefix', 'Tussenvoegsel', ['class' => 'col-sm-4 control-label']) !!}
                 <div class="col-sm-8">
                     {!! Form::text('name_prefix', $user->name_prefix, ['readonly', 'class' => 'form-control']) !!}
                 </div>

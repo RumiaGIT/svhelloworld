@@ -11,29 +11,29 @@
         @endif
     </p>
 
-    <p>Controlleer de gegevens in het onderstaande formulier goed! Gegevens kun je aanpassen bij <a href="{{ route('account.edit') }}" target="_blank">accountbeheer</a>.</p>
+    <p>Controleer de gegevens in het onderstaande formulier goed! Gegevens kun je aanpassen bij <a href="{{ route('account.edit') }}" target="_blank">accountbeheer</a>.</p>
 
     <div class="row">
         <div class="col-xs-12">
             {!! Form::open(['url' => route('activity_entry.store', $activity->id), 'class' => 'form-horizontal']) !!}
 
             <div class="form-group">
-                    {!! Form::label('first_name', 'Voornaam *', ['class' => 'col-sm-4 control-label']) !!}
-                <div class="col-sm-8">
+                    {!! Form::label('first_name', 'Voornaam *', ['class' => 'col-sm-2 control-label']) !!}
+                <div class="col-sm-6">
                     {!! Form::text('first_name', $user->first_name, ['readonly', 'class' => 'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group">
-                    {!! Form::label('name_prefix', 'Tussenvoegsel *', ['class' => 'col-sm-4 control-label']) !!}
-                <div class="col-sm-8">
+                    {!! Form::label('name_prefix', 'Tussenvoegsel', ['class' => 'col-sm-2 control-label']) !!}
+                <div class="col-sm-6">
                     {!! Form::text('name_prefix', $user->name_prefix, ['readonly', 'class' => 'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group">
-                    {!! Form::label('last_name', 'Achternaam *', ['class' => 'col-sm-4 control-label']) !!}
-                <div class="col-sm-8">
+                    {!! Form::label('last_name', 'Achternaam *', ['class' => 'col-sm-2 control-label']) !!}
+                <div class="col-sm-6">
                     {!! Form::text('last_name', $user->last_name, ['readonly', 'class' => 'form-control']) !!}
                 </div>
             </div>
@@ -41,15 +41,15 @@
             <hr>
 
             <div class="form-group">
-                {!! Form::label('email', 'E-mailadres *', ['class' => 'col-sm-4 control-label']) !!}
-                <div class="col-sm-8">
+                {!! Form::label('email', 'E-mailadres *', ['class' => 'col-sm-2 control-label']) !!}
+                <div class="col-sm-6">
                     {!! Form::email('email', $user->email, ['readonly', 'class' => 'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group">
-                {!! Form::label('phone_number', 'Telefoonnummer', ['class' => 'col-sm-4 control-label']) !!}
-                <div class="col-sm-8">
+                {!! Form::label('phone_number', 'Telefoonnummer', ['class' => 'col-sm-2 control-label']) !!}
+                <div class="col-sm-6">
                     {!! Form::text('phone_number', $user->phone_number, ['readonly', 'class' => 'form-control']) !!}
                 </div>
             </div>
@@ -57,22 +57,22 @@
             <hr>
 
             <div class="form-group">
-                {!! Form::label('address', 'Adres *', ['class' => 'col-sm-4 control-label']) !!}
-                <div class="col-sm-8">
+                {!! Form::label('address', 'Adres *', ['class' => 'col-sm-2 control-label']) !!}
+                <div class="col-sm-6">
                     {!! Form::text('address', $user->address, ['readonly', 'class' => 'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group">
-                {!! Form::label('zip_code', 'Postcode *', ['class' => 'col-sm-4 control-label']) !!}
-                <div class="col-sm-8">
+                {!! Form::label('zip_code', 'Postcode *', ['class' => 'col-sm-2 control-label']) !!}
+                <div class="col-sm-6">
                     {!! Form::text('zip_code', $user->zip_code, ['readonly', 'class' => 'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group">
-                {!! Form::label('city', 'Stad *', ['class' => 'col-sm-4 control-label']) !!}
-                <div class="col-sm-8">
+                {!! Form::label('city', 'Stad *', ['class' => 'col-sm-2 control-label']) !!}
+                <div class="col-sm-6">
                     {!! Form::text('city', $user->city, ['readonly', 'class' => 'form-control']) !!}
                 </div>
             </div>
@@ -80,14 +80,14 @@
             <hr>
 
             <div class="form-group">
-                {!! Form::label('notes', 'Opmerkingen', ['class' => 'col-sm-4 control-label']) !!}
-                <div class="col-sm-8">
+                {!! Form::label('notes', 'Opmerkingen', ['class' => 'col-sm-2 control-label']) !!}
+                <div class="col-sm-6">
                     {!! Form::textarea('notes', null, ['class' => 'form-control']) !!}
                 </div>
             </div>
 
             <div class="form-group {{ $errors->has('accept') ? 'has-error' : ''}}">
-                <div class="col-sm-offset-4 col-sm-8">
+                <div class="col-sm-offset-2 col-sm-6">
                     <div class="checkbox">
                         <label>
                             {!! Form::checkbox('accept', '1', false) !!}
@@ -104,7 +104,7 @@
             </div>
 
             <div class="form-group">
-                <div class="col-sm-offset-4 col-sm-8">
+                <div class="col-sm-offset-4 col-sm-6">
                     {!! Form::button('Aanmelden voor activiteit', ['type' => 'submit', 'class' => 'btn btn-primary']) !!}
                     <a href="{{ route('activity.show', $activity->id) }}" class="btn btn-danger">Annuleren</a>
                 </div>

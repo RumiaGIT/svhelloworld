@@ -15,6 +15,7 @@
                 <th></th>
                 <th>Naam</th>
                 <th>E-mailadres</th>
+                <th>Registratiedatum</th>
                 <th>Status</th>
                 <th>Acties</th>
             </tr>
@@ -26,6 +27,7 @@
                     </td>
                     <td><a href="{{ route('user.show', $user->id) }}">{{ $user->full_name() }} </a></td>
                     <td>{{ $user->email }}</td>
+                    <td>{{ $user->created_at }}</td>
                     <td>{!! $user->verified ? '<span class="label label-success">Geverifieerd</a>' : '<span class="label label-warning">Niet geverifieerd</span>' !!}</td>
                     <td>
                         <a href="{{ route('user.edit', $user->id) }}" class="btn btn-primary btn-xs"><i
