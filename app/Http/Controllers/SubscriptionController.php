@@ -230,7 +230,7 @@ class SubscriptionController extends Controller
             })->all();
         }
 
-        $contributions = Contribution::where('contribution_category_alias', $user->contribution_category_alias)
+        return Contribution::where('contribution_category_alias', $user->contribution_category_alias)
             ->where([
                 ['available_from', '<=', date('Y-m-d H:i:s')],
                 ['available_to', '>', date('Y-m-d H:i:s')],
@@ -239,7 +239,5 @@ class SubscriptionController extends Controller
                 $query->whereNotIn('id', $periods);
             })
             ->orderBy('available_from', 'asc');
-
-        return $contributions;
     }
 }

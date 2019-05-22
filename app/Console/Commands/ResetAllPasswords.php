@@ -51,7 +51,7 @@ class ResetAllPasswords extends Command
 
         foreach ($users as $user) {
             // Send password reset link to the user
-            $response = $this->broker()->sendResetLink(
+            $this->broker()->sendResetLink(
                 ['email' => $user->email],
                 $this->resetNotifier()
             );

@@ -110,13 +110,13 @@ class ActivityController extends Controller
             'ends_at' => request('ends_at'),
         ]);
 
-        $activityPriceMember = ActivityPrice::create([
+        ActivityPrice::create([
             'activity_id' => $activity->id,
             'user_category_alias' => 'lid',
             'amount' => request('event_price_member'),
         ]);
 
-        $activityPriceNonMember = ActivityPrice::create([
+        ActivityPrice::create([
             'activity_id' => $activity->id,
             'user_category_alias' => 'geen-lid',
             'amount' => request('event_price_non_member'),
