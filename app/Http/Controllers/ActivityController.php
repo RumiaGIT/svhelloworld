@@ -91,6 +91,7 @@ class ActivityController extends Controller
                 $this->validate($request, [
                     'event_name' => 'required|unique:activities,title|max:255',
                     'description' => 'required',
+                    'departure_location' => 'sometimes|string',
                     'event_price_member' => 'required|numeric',
                     'event_price_non_member' => 'required|numeric',
                     'member_limit' => 'int',
@@ -103,6 +104,7 @@ class ActivityController extends Controller
                 $activity = Activity::create([
                     'title' => request('event_name'),
                     'description' => request('description'),
+                    'departure_location' => request('departure_location'),
                     'member_limit' => request('member_limit'),
                     'available_from' => request('available_from'),
                     'available_to' => request('available_to'),

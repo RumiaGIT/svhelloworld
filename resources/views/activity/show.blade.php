@@ -16,6 +16,14 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @if($activity->departure_location)
+                        <tr>
+                            <td class="col-md-4">We vertrekken vanaf locatie</td>
+                            <td>
+                                {{ $activity->departure_location }}
+                            </td>
+                        </tr>
+                        @endif
                         <tr>
                             <td>Datum en tijd</td>
                             <td>
