@@ -9,10 +9,10 @@
         "caouecs/laravel-lang": "~3.0",
         "doctrine/dbal": "^2.5",
         "guzzlehttp/guzzle": "^6.2",
-        "jrean/laravel-user-verification": "^4.0",
+        "jrean/laravel-user-verification": "^5.0",
         "laracasts/flash": "^3.0",
         "laravel/dusk": "^1.0",
-        "laravel/framework": "5.4.*",
+        "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0",
         "laravelcollective/html": "^5.3",
         "lavary/laravel-menu": "dev-master",
@@ -24,7 +24,8 @@
     "require-dev": {
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",
-        "phpunit/phpunit": "~5.7"
+        "phpunit/phpunit": "~6.0",
+        "filp/whoops": "~2.0"
     },
     "autoload": {
         "classmap": [
@@ -54,6 +55,10 @@
         "post-update-cmd": [
             "Illuminate\\Foundation\\ComposerScripts::postUpdate",
             "php artisan optimize"
+        ],
+        "post-autoload-dump": [
+            "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
+            "@php artisan package:discover"
         ]
     },
     "config": {
