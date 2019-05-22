@@ -93,13 +93,13 @@ class ActivityEntryController extends Controller
         $today = Carbon::today();
 
         //Check if join date hasn't expired
-        if(!($activity->available_from <= $today && $activity->available_to >= $today)) {
+        if (!($activity->available_from <= $today && $activity->available_to >= $today)) {
             flash('Aanmeldperiode is verlopen.', 'info');
             return redirect(route('activity.show', $activity->id));
         }
 
         //Check member limit
-        if($activity->entries()->count() >= $activity->member_limit && $activity->member_limit != 0 && $activity->member_limit != null) {
+        if ($activity->entries()->count() >= $activity->member_limit && $activity->member_limit != 0 && $activity->member_limit != null) {
             flash('Het is niet meer mogelijk om je aan te melden voor deze acitviteit want, de activiteit heeft het maximum aantal deelnemers bereikt.', 'info');
             return redirect(route('activity.show', $activity->id));
         }
