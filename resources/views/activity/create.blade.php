@@ -29,6 +29,14 @@
                     </div>
                 </div>
 
+                <div class="form-group {{ $errors->has('departure_location') ? 'has-error' : ''}}">
+                    <label for="departure_location" class="control-label col-sm-2">Locatie van vertrek</label>
+                    <div class="col-sm-6">
+                        <input type="text" name="departure_location" id="departure_location" value="{{ old('departure_location') }}" class="form-control">
+                        {!! $errors->first('departure_location', '<p class="help-block">:message</p>') !!}
+                    </div>
+                </div>
+
                 <div class="form-group {{ $errors->has('event_price_member') ? 'has-error' : ''}}">
                     <label for="event_price_member" class="control-label col-sm-2">Prijs leden *</label>
                     <div class="col-sm-6">

@@ -17,6 +17,7 @@ class Activity extends Model
     protected $fillable = [
         'title',
         'description',
+        'departure_location',
         'available_from',
         'available_to',
         'starts_at',
