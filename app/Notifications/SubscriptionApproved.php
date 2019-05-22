@@ -26,8 +26,6 @@ class SubscriptionApproved extends Notification
 
     /**
      * Create a new notification instance.
-     *
-     * @return void
      */
     public function __construct($subscription_id, $period_name)
     {

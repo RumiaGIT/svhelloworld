@@ -1,3 +1,8 @@
 imports:
+    - { resource: 'vendor/symplify/easy-coding-standard/config/common.yml' }
     - { resource: 'vendor/symplify/easy-coding-standard/config/psr2.yml' }
     - { resource: 'vendor/symplify/easy-coding-standard/config/psr12.yml' }
+
+parameters:
+    exclude_checkers:
+        - PhpCsFixer\Fixer\Operator\UnaryOperatorSpacesFixer

@@ -26,8 +26,6 @@ class ResetAllPasswords extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -47,7 +45,7 @@ class ResetAllPasswords extends Command
 
         $bar = $this->output->createProgressBar(count($users));
 
-        if (!$this->confirm('Do you wish to continue?')) {
+        if (! $this->confirm('Do you wish to continue?')) {
             return;
         }
 

@@ -54,12 +54,11 @@ class EmailController extends Controller
     /**
      * Email verificate index view.
      *
-     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request)
     {
-        if (!$request->session()->has('flash_notification')) {
+        if (! $request->session()->has('flash_notification')) {
             return redirect('account')->with('flash_notification');
         }
 
@@ -69,7 +68,6 @@ class EmailController extends Controller
     /**
      * Email edit view.
      *
-     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Request $request)
@@ -80,7 +78,6 @@ class EmailController extends Controller
     /**
      * Updates the users' email address.
      *
-     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request)
@@ -107,7 +104,6 @@ class EmailController extends Controller
     /**
      * Resend the e-mail verification again.
      *
-     * @param  Request $request
      * @return Response
      */
     public function resend(Request $request)
@@ -118,7 +114,6 @@ class EmailController extends Controller
     /**
      * Resend the e-mail verification again.
      *
-     * @param  Request $request
      * @return Response
      */
     public function resendVerification(Request $request)
@@ -133,7 +128,7 @@ class EmailController extends Controller
         }
 
         // Check if there's a verification token set
-        if (!$user->verification_token) {
+        if (! $user->verification_token) {
             UserVerification::generate($user);
         }
 
@@ -153,7 +148,7 @@ class EmailController extends Controller
      */
     public function getVerification(Request $request, $token)
     {
-        if (!$this->validateRequest($request)) {
+        if (! $this->validateRequest($request)) {
             return redirect($this->redirectIfVerificationFails());
         }
 

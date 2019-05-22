@@ -10,19 +10,13 @@ class CreateActivityEntryPayment
 {
     /**
      * Create the event listener.
-     *
-     * @return void
      */
     public function __construct()
     {
-        //
     }
 
     /**
      * Handle the event.
-     *
-     * @param  UserAppliedForActivity  $event
-     * @return void
      */
     public function handle(UserAppliedForActivity $event)
     {

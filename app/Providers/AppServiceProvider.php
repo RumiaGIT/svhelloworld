@@ -10,24 +10,20 @@ class AppServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap any application services.
-     *
-     * @return void
      */
     public function boot()
     {
         Blade::directive('datetime', function ($expression) {
-            return "<?php echo Carbon\Carbon::parse($expression)->format('d-m-Y H:i'); ?>";
+            return "<?php echo Carbon\Carbon::parse(${expression})->format('d-m-Y H:i'); ?>";
         });
 
         Blade::directive('date', function ($expression) {
-            return "<?php echo Carbon\Carbon::parse($expression)->format('d-m-Y'); ?>";
+            return "<?php echo Carbon\Carbon::parse(${expression})->format('d-m-Y'); ?>";
         });
     }
 
     /**
      * Register any application services.
-     *
-     * @return void
      */
     public function register()
     {

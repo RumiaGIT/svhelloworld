@@ -173,16 +173,16 @@ class UserController extends Controller
         ]);
 
         // Extra checks if the user edits his own account
-        if ($id == $user->id) {
+        if ($id === $user->id) {
             $validator->after(function ($validator) use ($request, $user) {
                 // Check if the user wants to deactivate his own account
-                if (!$request->get('activated')) {
+                if (! $request->get('activated')) {
                     $validator->errors()->add('activated', 'het is niet toegestaan jezelf te deactiveren.');
                     $request->merge(['activated' => $user->activated]);
                 }
 
                 // Check if the user wants to change his own role
-                if ($request->get('account_type') != $user->account_type) {
+                if ($request->get('account_type') !== $user->account_type) {
                     $validator->errors()->add('account_type', 'het is niet toegestaan om je eigen account type te wijzigen.');
                     $request->merge(['account_type' => $user->account_type]);
                 }
@@ -200,7 +200,7 @@ class UserController extends Controller
         $user->update($request->all());
 
         // Send email verification link when the email address has been changed
-        if ($user_old_email != $request->get('email')) {
+        if ($user_old_email !== $request->get('email')) {
             UserVerification::generate($user);
             UserVerification::send($user, 'Verifieer je e-mailadres');
         }
@@ -218,7 +218,6 @@ class UserController extends Controller
      *
      * @param  int $id
      *
-     * @param Request $request
      * @return Response
      */
     public function destroy($id, Request $request)
@@ -226,7 +225,7 @@ class UserController extends Controller
         $admin_user = $request->user();
 
         // Check if the user wants to delete his own account
-        if ($id == $admin_user->id) {
+        if ($id === $admin_user->id) {
             flash('Het is niet toegestaan jezelf te verwijderen.', 'error');
 
             return redirect(route('user.index'));
@@ -261,7 +260,7 @@ class UserController extends Controller
 
         // Validate current password
         $validator->after(function ($validator) use ($id, $user) {
-            if ($id == $user->id) {
+            if ($id === $user->id) {
                 $validator->errors()->add('activated', 'het is niet toegestaan jezelf te activeren of deactiveren.');
                 flash('Het is niet toegestaan jezelf te activeren of deactiveren.', 'error');
             }
@@ -289,7 +288,6 @@ class UserController extends Controller
     /**
      * Display a list of members only.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return Response
      */
     public function members(Request $request)

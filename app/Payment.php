@@ -10,6 +10,7 @@ class Payment extends Model
     use SoftDeletes;
 
     public const STATUS_OPEN = 'open';
+
     public const STATUS_PAID = 'paid';
 
     /**
@@ -40,13 +41,10 @@ class Payment extends Model
 
     /**
      * Constructor.
-     *
-     * @param  array  $attributes
-     * @return void
      */
     public function __construct(array $attributes = [])
     {
-        if (!isset($attributes['status'])) {
+        if (! isset($attributes['status'])) {
             $attributes['status'] = self::STATUS_OPEN;
         }
 
@@ -76,7 +74,7 @@ class Payment extends Model
      */
     public function paid()
     {
-        return $this->status == self::STATUS_PAID;
+        return $this->status === self::STATUS_PAID;
     }
 
     /**

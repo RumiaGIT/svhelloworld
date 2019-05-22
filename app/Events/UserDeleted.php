@@ -10,7 +10,8 @@ use Illuminate\Queue\SerializesModels;
 
 class UserDeleted
 {
-    use InteractsWithSockets, SerializesModels;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     /**
      * The user that needs to be unsubscribed.
@@ -23,7 +24,6 @@ class UserDeleted
      * Create a new event instance.
      *
      * @param User $user The user that needs to be unsubscribed.
-     * @return void
      */
     public function __construct(User $user)
     {

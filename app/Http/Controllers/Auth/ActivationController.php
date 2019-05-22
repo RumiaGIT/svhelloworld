@@ -53,12 +53,11 @@ class ActivationController extends Controller
     /**
      * Email verificate index view.
      *
-     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request)
     {
-        if (!$request->session()->has('flash_notification.message')) {
+        if (! $request->session()->has('flash_notification.message')) {
             return redirect('account');
         }
 
@@ -68,7 +67,6 @@ class ActivationController extends Controller
     /**
      * Handle the user verification.
      *
-     * @param Request $request
      * @param  string $token
      * @return Response
      */

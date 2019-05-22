@@ -35,7 +35,7 @@ class ActivityEntryController extends Controller
     {
         $user = Auth::user();
 
-        if (is_null($id)) {
+        if ($id === null) {
             return redirect(route('activity.index'));
         }
 
@@ -56,7 +56,7 @@ class ActivityEntryController extends Controller
             ->where('user_category_alias', $user->user_category_alias)
             ->first();
 
-        if (!$activity_price) {
+        if (! $activity_price) {
             flash('Je kunt je niet aanmelden voor deze activiteit.', 'info');
 
             return redirect(route('activity.show', $activity->id));
@@ -68,7 +68,6 @@ class ActivityEntryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
@@ -93,13 +92,13 @@ class ActivityEntryController extends Controller
         $today = Carbon::today();
 
         //Check if join date hasn't expired
-        if (!($activity->available_from <= $today && $activity->available_to >= $today)) {
+        if (! ($activity->available_from <= $today && $activity->available_to >= $today)) {
             flash('Aanmeldperiode is verlopen.', 'info');
             return redirect(route('activity.show', $activity->id));
         }
 
         //Check member limit
-        if ($activity->entries()->count() >= $activity->member_limit && $activity->member_limit != 0 && $activity->member_limit != null) {
+        if ($activity->entries()->count() >= $activity->member_limit && $activity->member_limit !== 0 && $activity->member_limit !== null) {
             flash('Het is niet meer mogelijk om je aan te melden voor deze acitviteit want, de activiteit heeft het maximum aantal deelnemers bereikt.', 'info');
             return redirect(route('activity.show', $activity->id));
         }
@@ -120,7 +119,7 @@ class ActivityEntryController extends Controller
             ->where('user_category_alias', $user->user_category_alias)
             ->first();
 
-        if (!$activity_price) {
+        if (! $activity_price) {
             flash('Je kunt je niet aanmelden voor deze activiteit.', 'info');
 
             return redirect(route('activity.show', $activity->id));
@@ -134,7 +133,7 @@ class ActivityEntryController extends Controller
         ]);
 
         // Check if the activity entry is created
-        if (!$activity_entry) {
+        if (! $activity_entry) {
             flash(sprintf('Aanmelden voor de activiteit \'%s\' is niet gelukt. Probeer het alstublieft opnieuw.', $activity->title), 'danger');
 
             return back()->withInput();
@@ -171,7 +170,7 @@ class ActivityEntryController extends Controller
         $user = Auth::user();
         $activity_entry = ActivityEntry::findOrFail($id);
 
-        if (!$user->can('view', $activity_entry)) {
+        if (! $user->can('view', $activity_entry)) {
             return abort(403);
         }
 

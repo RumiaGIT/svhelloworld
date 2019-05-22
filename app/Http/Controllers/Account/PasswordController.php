@@ -27,7 +27,7 @@ class PasswordController extends Controller
 
         // Validate current password
         $validator->after(function ($validator) use ($request, $user) {
-            if (!Hash::check($request->input('password_current'), $user->password)) {
+            if (! Hash::check($request->input('password_current'), $user->password)) {
                 $validator->errors()->add('password_current', 'huidige wachtwoord is onjuist.');
             }
         });

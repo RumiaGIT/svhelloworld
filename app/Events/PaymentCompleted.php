@@ -10,7 +10,8 @@ use Illuminate\Queue\SerializesModels;
 
 class PaymentCompleted
 {
-    use InteractsWithSockets, SerializesModels;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     /**
      * The completed payment.
@@ -21,8 +22,6 @@ class PaymentCompleted
 
     /**
      * Create a new event instance.
-     *
-     * @return void
      */
     public function __construct(Payment $payment)
     {

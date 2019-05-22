@@ -10,25 +10,19 @@ class UpdateSubscriptionStatus
 {
     /**
      * Create the event listener.
-     *
-     * @return void
      */
     public function __construct()
     {
-        //
     }
 
     /**
      * Handle the event.
-     *
-     * @param  PaymentCompleted  $event
-     * @return void
      */
     public function handle(PaymentCompleted $event)
     {
         $subscription = $event->payment->payable;
 
-        if (!$subscription instanceof Subscription) {
+        if (! $subscription instanceof Subscription) {
             return;
         }
 

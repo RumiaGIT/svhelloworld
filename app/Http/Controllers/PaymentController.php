@@ -34,18 +34,15 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -59,7 +56,7 @@ class PaymentController extends Controller
         $user = Auth::user();
         $payment = Payment::findOrFail($id);
 
-        if (!$user->can('view', $payment)) {
+        if (! $user->can('view', $payment)) {
             return abort(403);
         }
 
@@ -77,11 +74,11 @@ class PaymentController extends Controller
         $user = Auth::user();
         $payment = Payment::findOrFail($id);
 
-        if (!$user->can('view', $payment)) {
+        if (! $user->can('view', $payment)) {
             return abort(403);
         }
 
-        if (!$payment->paid()) {
+        if (! $payment->paid()) {
             return abort(404);
         }
 
@@ -101,7 +98,7 @@ class PaymentController extends Controller
         $user = Auth::user();
         $payment = Payment::findOrFail($id);
 
-        if (!$user->can('pay', $payment)) {
+        if (! $user->can('pay', $payment)) {
             return abort(403);
         }
 
@@ -126,7 +123,6 @@ class PaymentController extends Controller
     /**
      * Payment webhook.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function webhook(Request $request)
@@ -159,7 +155,7 @@ class PaymentController extends Controller
         $user = Auth::user();
         $payment = Payment::findOrFail($id);
 
-        if (!$user->can('pay', $payment)) {
+        if (! $user->can('pay', $payment)) {
             return abort(403);
         }
 
@@ -192,19 +188,16 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
@@ -215,11 +208,9 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 
     /**
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return Response
      */

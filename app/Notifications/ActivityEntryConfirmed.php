@@ -26,8 +26,6 @@ class ActivityEntryConfirmed extends Notification
 
     /**
      * Create a new notification instance.
-     *
-     * @return void
      */
     public function __construct($activity_entry_id, $activity_title)
     {

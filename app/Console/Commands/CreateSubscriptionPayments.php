@@ -25,8 +25,6 @@ class CreateSubscriptionPayments extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -50,7 +48,7 @@ class CreateSubscriptionPayments extends Command
 
         $this->info(sprintf('Found %d subscription(s) that don\'t have any payments yet.', count($subscriptions)));
 
-        if (!$this->confirm('Do you wish to continue?')) {
+        if (! $this->confirm('Do you wish to continue?')) {
             return 1;
         }
 

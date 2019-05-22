@@ -10,8 +10,6 @@ class UserCategory
      * Handle an incoming request and checks if the user has the required user category.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  $user_categories
      * @return mixed
      */
     public function handle($request, Closure $next, ...$user_categories)

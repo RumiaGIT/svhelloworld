@@ -10,25 +10,19 @@ class UpdateActivityEntryStatus
 {
     /**
      * Create the event listener.
-     *
-     * @return void
      */
     public function __construct()
     {
-        //
     }
 
     /**
      * Handle the event.
-     *
-     * @param  PaymentCompleted  $event
-     * @return void
      */
     public function handle(PaymentCompleted $event)
     {
         $activity_entry = $event->payment->payable;
 
-        if (!$activity_entry instanceof ActivityEntry) {
+        if (! $activity_entry instanceof ActivityEntry) {
             return;
         }
 

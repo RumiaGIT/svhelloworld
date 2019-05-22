@@ -36,7 +36,7 @@ class SubscriptionController extends Controller
     {
         $user = Auth::user();
 
-        if (is_null($slug)) {
+        if ($slug === null) {
             return redirect(route('subscription.index'));
         }
 
@@ -46,7 +46,7 @@ class SubscriptionController extends Controller
             $query->where('slug', $slug);
         })->first();
 
-        if (!$contribution) {
+        if (! $contribution) {
             flash('Je kunt je niet inschrijven voor deze periode, mogelijk omdat je je al hebt ingeschreven.', 'info');
 
             return redirect(route('subscription.index'));
@@ -58,7 +58,6 @@ class SubscriptionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  string $slug
      * @return \Illuminate\Http\Response
      */
@@ -80,7 +79,7 @@ class SubscriptionController extends Controller
             $query->where('slug', $slug);
         })->first();
 
-        if (!$contribution) {
+        if (! $contribution) {
             flash(sprintf('Je kunt je niet inschrijven voor deze periode, mogelijk omdat je je al hebt ingeschreven.', $contribution->period->name), 'info');
 
             return redirect(route('subscription.index'));
@@ -93,7 +92,7 @@ class SubscriptionController extends Controller
         ]);
 
         // Check if the subscription is created
-        if (!$subscription) {
+        if (! $subscription) {
             flash(sprintf('Inschrijving voor periode %s is niet gelukt. Probeer het alstublieft opnieuw.', $contribution->period->name), 'danger');
 
             return back()->withInput();
@@ -116,7 +115,7 @@ class SubscriptionController extends Controller
         $user = Auth::user();
         $subscription = Subscription::findOrFail($id);
 
-        if (!$user->can('view', $subscription)) {
+        if (! $user->can('view', $subscription)) {
             return abort(403);
         }
 
@@ -131,19 +130,16 @@ class SubscriptionController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
@@ -154,7 +150,6 @@ class SubscriptionController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 
     /**
@@ -172,7 +167,6 @@ class SubscriptionController extends Controller
     /**
      * Approve the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -199,7 +193,6 @@ class SubscriptionController extends Controller
     /**
      * Decline the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -223,7 +216,6 @@ class SubscriptionController extends Controller
     /**
      * Returns the available contributions for the given user.
      *
-     * @param  User   $user
      * @param  array  $ignoreCurrentSubscriptions
      * @return array
      */
@@ -232,7 +224,7 @@ class SubscriptionController extends Controller
         $periods = [];
 
         // Get periods the user is already subscribed to
-        if (!$ignoreCurrentSubscriptions) {
+        if (! $ignoreCurrentSubscriptions) {
             $periods = $user->subscriptions->map(function ($subscription) {
                 return $subscription->contribution->period->id;
             })->all();

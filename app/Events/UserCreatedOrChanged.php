@@ -10,7 +10,8 @@ use Illuminate\Queue\SerializesModels;
 
 class UserCreatedOrChanged
 {
-    use InteractsWithSockets, SerializesModels;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     /**
      * The user that needs to be subscribed.
@@ -23,7 +24,6 @@ class UserCreatedOrChanged
      * Create a new event instance.
      *
      * @param User $user The user that needs to be subscribed.
-     * @return void
      */
     public function __construct(User $user)
     {

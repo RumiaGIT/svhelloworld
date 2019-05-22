@@ -21,7 +21,6 @@ class RedirectIfNotVerified
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @return mixed
      */
     public function handle($request, Closure $next)
@@ -30,7 +29,7 @@ class RedirectIfNotVerified
             return $next($request);
         }
 
-        if (!Auth::user()->verified) {
+        if (! Auth::user()->verified) {
             flash(
                 sprintf('Je moet je e-mailadres verifieren voor je deze pagina kunt bezoeken. E-mail niet ontvangen?' .
                 ' <a href="%s">Stuur opnieuw een verificatie e-mail.</a>', route('account.email.verificate.resend')),

@@ -10,26 +10,24 @@ use Illuminate\Support\Facades\Auth;
 class AccountController extends Controller
 {
     /**
-    * Account index view.
-    *
-    * @param Request $request
-    * @return Response
-    */
+     * Account index view.
+     *
+     * @return Response
+     */
     public function index(Request $request)
     {
         $user = Auth::user();
 
-        $userAccountType = $user->account_type == 'admin' ? 'Administrator' : 'Normale gebruiker';
+        $userAccountType = $user->account_type === 'admin' ? 'Administrator' : 'Normale gebruiker';
 
         return view('account.index', compact('user', 'userAccountType'));
     }
 
     /**
-    * Account edit view.
-    *
-    * @param Request $request
-    * @return Response
-    */
+     * Account edit view.
+     *
+     * @return Response
+     */
     public function edit(Request $request)
     {
         $user = Auth::user();
@@ -38,11 +36,10 @@ class AccountController extends Controller
     }
 
     /**
-    * Update account action.
-    *
-    * @param Request $request
-    * @return Response
-    */
+     * Update account action.
+     *
+     * @return Response
+     */
     public function update(Request $request)
     {
         $this->validate($request, [
@@ -64,11 +61,10 @@ class AccountController extends Controller
     }
 
     /**
-    * Account deactivated view.
-    *
-    * @param Request $request
-    * @return Response
-    */
+     * Account deactivated view.
+     *
+     * @return Response
+     */
     public function deactivated(Request $request)
     {
         return view('account.deactivated');

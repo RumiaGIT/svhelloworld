@@ -3,7 +3,6 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -12,9 +11,13 @@ class AdminNewUserPaid extends Notification
     use Queueable;
 
     public $first_name;
-    public $name_prefix = "";
+
+    public $name_prefix = '';
+
     public $last_name;
+
     public $phone_number;
+
     public $email;
 
     public function __construct($first_name, $name_prefix, $last_name, $phone_number, $email)
@@ -46,11 +49,11 @@ class AdminNewUserPaid extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage())
-                    ->line('Een nieuw lid heeft zijn contributie betaald')
-                    ->line('Naam: ' . $this->first_name . ' ' . $this->name_prefix . ' ' . $this->last_name)
-                    ->line('Telefoonnummer: ' . $this->phone_number)
-                    ->line('Email: ' . $this->email)
-                    ->action('Gebruikers beheren', url('http://mijn.svhelloworld.nl/gebruikers'));
+            ->line('Een nieuw lid heeft zijn contributie betaald')
+            ->line('Naam: ' . $this->first_name . ' ' . $this->name_prefix . ' ' . $this->last_name)
+            ->line('Telefoonnummer: ' . $this->phone_number)
+            ->line('Email: ' . $this->email)
+            ->action('Gebruikers beheren', url('http://mijn.svhelloworld.nl/gebruikers'));
     }
 
     /**
@@ -62,7 +65,6 @@ class AdminNewUserPaid extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
         ];
     }
 }

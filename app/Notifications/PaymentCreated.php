@@ -18,7 +18,6 @@ class PaymentCreated extends Notification
      * Create a new notification instance.
      *
      * @param  int  $payment_id
-     * @return void
      */
     public function __construct($payment_id)
     {
