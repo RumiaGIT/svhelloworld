@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use App\User;
 use App\Activity;
 use App\ActivityEntry;
-use Illuminate\Http\Request;
 use App\Events\UserAppliedForActivity;
 use App\Notifications\ActivityEntryConfirmed;
+use App\User;
+use Auth;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class ActivityEntryController extends Controller
 {
@@ -56,7 +56,7 @@ class ActivityEntryController extends Controller
             ->where('user_category_alias', $user->user_category_alias)
             ->first();
 
-        if (! $activity_price) {
+        if (!$activity_price) {
             flash('Je kunt je niet aanmelden voor deze activiteit.', 'info');
 
             return redirect(route('activity.show', $activity->id));
@@ -120,7 +120,7 @@ class ActivityEntryController extends Controller
             ->where('user_category_alias', $user->user_category_alias)
             ->first();
 
-        if (! $activity_price) {
+        if (!$activity_price) {
             flash('Je kunt je niet aanmelden voor deze activiteit.', 'info');
 
             return redirect(route('activity.show', $activity->id));
@@ -134,7 +134,7 @@ class ActivityEntryController extends Controller
         ]);
 
         // Check if the activity entry is created
-        if (! $activity_entry) {
+        if (!$activity_entry) {
             flash(sprintf('Aanmelden voor de activiteit \'%s\' is niet gelukt. Probeer het alstublieft opnieuw.', $activity->title), 'danger');
 
             return back()->withInput();
@@ -171,7 +171,7 @@ class ActivityEntryController extends Controller
         $user = Auth::user();
         $activity_entry = ActivityEntry::findOrFail($id);
 
-        if (! $user->can('view', $activity_entry)) {
+        if (!$user->can('view', $activity_entry)) {
             return abort(403);
         }
 

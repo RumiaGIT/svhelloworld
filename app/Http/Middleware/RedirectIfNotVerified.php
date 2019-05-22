@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Laracasts\Flash\Flash;
 use Illuminate\Support\Facades\Auth;
+use Laracasts\Flash\Flash;
 
 class RedirectIfNotVerified
 {
@@ -30,9 +30,9 @@ class RedirectIfNotVerified
             return $next($request);
         }
 
-        if (! Auth::user()->verified) {
+        if (!Auth::user()->verified) {
             flash(
-                sprintf('Je moet je e-mailadres verifieren voor je deze pagina kunt bezoeken. E-mail niet ontvangen?'.
+                sprintf('Je moet je e-mailadres verifieren voor je deze pagina kunt bezoeken. E-mail niet ontvangen?' .
                 ' <a href="%s">Stuur opnieuw een verificatie e-mail.</a>', route('account.email.verificate.resend')),
                 'warning'
             );

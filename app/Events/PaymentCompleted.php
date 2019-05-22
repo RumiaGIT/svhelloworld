@@ -4,9 +4,9 @@ namespace App\Events;
 
 use App\Payment;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Queue\SerializesModels;
 
 class PaymentCompleted
 {

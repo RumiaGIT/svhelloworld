@@ -2,9 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Payment;
 use App\Events\SubscriptionApproved;
 use App\Notifications\PaymentCreated as PaymentCreatedNotification;
+use App\Payment;
 
 class CreateSubscriptionPayment
 {
@@ -27,7 +27,7 @@ class CreateSubscriptionPayment
     public function handle(SubscriptionApproved $event)
     {
         // Create the payment
-        $payment = new Payment;
+        $payment = new Payment();
         $payment->amount = $event->amount;
         $payment->description = $event->description;
 

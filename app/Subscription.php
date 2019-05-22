@@ -55,7 +55,7 @@ class Subscription extends Model
      */
     public function canceled()
     {
-        return ! is_null($this->canceled_at);
+        return !is_null($this->canceled_at);
     }
 
     /**
@@ -65,7 +65,7 @@ class Subscription extends Model
      */
     public function approved()
     {
-        return ! is_null($this->approved_at);
+        return !is_null($this->approved_at);
     }
 
     /**
@@ -75,7 +75,7 @@ class Subscription extends Model
      */
     public function declined()
     {
-        return ! is_null($this->declined_at);
+        return !is_null($this->declined_at);
     }
 
     /**
@@ -85,7 +85,7 @@ class Subscription extends Model
      */
     public function confirmed()
     {
-        return ! is_null($this->confirmed_at);
+        return !is_null($this->confirmed_at);
     }
 
     /**

@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Account;
 
-use Illuminate\Http\Request;
 use App\Events\UserCreatedOrChanged;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Jrean\UserVerification\Traits\VerifiesUsers;
-use Jrean\UserVerification\Facades\UserVerification;
-use Jrean\UserVerification\Exceptions\UserNotFoundException;
 use Jrean\UserVerification\Exceptions\TokenMismatchException;
 use Jrean\UserVerification\Exceptions\UserIsVerifiedException;
+use Jrean\UserVerification\Exceptions\UserNotFoundException;
+use Jrean\UserVerification\Facades\UserVerification;
+use Jrean\UserVerification\Traits\VerifiesUsers;
 
 class EmailController extends Controller
 {
@@ -59,7 +59,7 @@ class EmailController extends Controller
      */
     public function index(Request $request)
     {
-        if (! $request->session()->has('flash_notification')) {
+        if (!$request->session()->has('flash_notification')) {
             return redirect('account')->with('flash_notification');
         }
 
@@ -133,7 +133,7 @@ class EmailController extends Controller
         }
 
         // Check if there's a verification token set
-        if (! $user->verification_token) {
+        if (!$user->verification_token) {
             UserVerification::generate($user);
         }
 
@@ -153,7 +153,7 @@ class EmailController extends Controller
      */
     public function getVerification(Request $request, $token)
     {
-        if (! $this->validateRequest($request)) {
+        if (!$this->validateRequest($request)) {
             return redirect($this->redirectIfVerificationFails());
         }
 

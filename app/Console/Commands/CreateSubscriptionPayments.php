@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Notifications\PaymentCreated;
 use App\Payment;
 use App\Subscription;
 use Illuminate\Console\Command;
-use App\Notifications\PaymentCreated;
 
 class CreateSubscriptionPayments extends Command
 {
@@ -50,7 +50,7 @@ class CreateSubscriptionPayments extends Command
 
         $this->info(sprintf('Found %d subscription(s) that don\'t have any payments yet.', count($subscriptions)));
 
-        if (! $this->confirm('Do you wish to continue?')) {
+        if (!$this->confirm('Do you wish to continue?')) {
             return 1;
         }
 
@@ -58,7 +58,7 @@ class CreateSubscriptionPayments extends Command
 
         foreach ($subscriptions as $subscription) {
             // Create the payment
-            $payment = new Payment;
+            $payment = new Payment();
             $payment->amount = $subscription->contribution->amount;
             $payment->description = sprintf('Contributie voor periode %s.', $subscription->contribution->period->name);
 

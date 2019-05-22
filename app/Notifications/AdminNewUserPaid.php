@@ -3,9 +3,9 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class AdminNewUserPaid extends Notification
 {
@@ -45,7 +45,7 @@ class AdminNewUserPaid extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
                     ->line('Een nieuw lid heeft zijn contributie betaald')
                     ->line('Naam: ' . $this->first_name . ' ' . $this->name_prefix . ' ' . $this->last_name)
                     ->line('Telefoonnummer: ' . $this->phone_number)

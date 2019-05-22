@@ -31,7 +31,7 @@ class CheckUserDetails
 
         $user = Auth::user();
 
-        if (! empty($user->address) && ! empty($user->zip_code) && ! empty($user->city)) {
+        if (!empty($user->address) && !empty($user->zip_code) && !empty($user->city)) {
             return $next($request);
         }
 

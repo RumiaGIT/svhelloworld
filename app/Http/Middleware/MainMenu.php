@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Auth;
-use Menu;
 use Closure;
+use Menu;
 
 class MainMenu
 {

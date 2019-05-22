@@ -28,7 +28,7 @@ class UpdateActivityEntryStatus
     {
         $activity_entry = $event->payment->payable;
 
-        if (! $activity_entry instanceof ActivityEntry) {
+        if (!$activity_entry instanceof ActivityEntry) {
             return;
         }
 

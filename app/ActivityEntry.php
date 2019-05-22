@@ -62,7 +62,7 @@ class ActivityEntry extends Model
      */
     public function confirmed()
     {
-        return ! is_null($this->confirmed_at);
+        return !is_null($this->confirmed_at);
     }
 
     /**

@@ -2,9 +2,9 @@
 
 namespace App\Listeners;
 
-use Newsletter;
 use App\Events\UserDeleted;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Newsletter;
 
 class UnsubscribeFromMailchimpList implements ShouldQueue
 {
@@ -36,7 +36,7 @@ class UnsubscribeFromMailchimpList implements ShouldQueue
         $subscriber_hash = $api->subscriberHash($event->user->email);
 
         $result = $api->get("lists/$list_id/interest-categories/$interest_category_id/interests");
-        if (! isset($result['interests']) || count($result['interests']) == 0) {
+        if (!isset($result['interests']) || count($result['interests']) == 0) {
             return;
         }
 

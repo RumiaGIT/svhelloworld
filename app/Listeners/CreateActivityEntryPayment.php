@@ -2,9 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Payment;
 use App\Events\UserAppliedForActivity;
 use App\Notifications\PaymentCreated as PaymentCreatedNotification;
+use App\Payment;
 
 class CreateActivityEntryPayment
 {
@@ -27,7 +27,7 @@ class CreateActivityEntryPayment
     public function handle(UserAppliedForActivity $event)
     {
         // Create the payment
-        $payment = new Payment;
+        $payment = new Payment();
         $payment->amount = $event->amount;
         $payment->description = $event->description;
 

@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use App\Activity;
-use Carbon\Carbon;
-use Illuminate\Http\Request;
 use App\ActivityEntry;
 use App\ActivityPrice;
+use Auth;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class ActivityController extends Controller
 {

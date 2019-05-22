@@ -2,10 +2,10 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Notifications\ResetPasswordNotification;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
@@ -61,7 +61,7 @@ class User extends Authenticatable
      */
     public function full_name()
     {
-        return $this->first_name.($this->name_prefix ? ' '.$this->name_prefix : '').' '.$this->last_name;
+        return $this->first_name . ($this->name_prefix ? ' ' . $this->name_prefix : '') . ' ' . $this->last_name;
     }
 
     /**
@@ -72,7 +72,7 @@ class User extends Authenticatable
      */
     public function hasAccountType($account_type)
     {
-        return ! is_null($this->account_type) && $this->account_type == $account_type;
+        return !is_null($this->account_type) && $this->account_type == $account_type;
     }
 
     /**
@@ -83,7 +83,7 @@ class User extends Authenticatable
      */
     public function hasUserCategory($user_category)
     {
-        return ! is_null($this->user_category_alias) && $this->user_category_alias == $user_category;
+        return !is_null($this->user_category_alias) && $this->user_category_alias == $user_category;
     }
 
     /**

@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Laracasts\Flash\Flash;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Jrean\UserVerification\Traits\VerifiesUsers;
-use Jrean\UserVerification\Facades\UserVerification;
-use Jrean\UserVerification\Exceptions\UserNotFoundException;
+use Illuminate\Http\Request;
 use Jrean\UserVerification\Exceptions\TokenMismatchException;
 use Jrean\UserVerification\Exceptions\UserIsVerifiedException;
+use Jrean\UserVerification\Exceptions\UserNotFoundException;
+use Jrean\UserVerification\Facades\UserVerification;
+use Jrean\UserVerification\Traits\VerifiesUsers;
+use Laracasts\Flash\Flash;
 
 class ActivationController extends Controller
 {
@@ -58,7 +58,7 @@ class ActivationController extends Controller
      */
     public function index(Request $request)
     {
-        if (! $request->session()->has('flash_notification.message')) {
+        if (!$request->session()->has('flash_notification.message')) {
             return redirect('account');
         }
 

@@ -2,9 +2,9 @@
 
 namespace App\Listeners;
 
-use App\Subscription;
 use App\Events\PaymentCompleted;
 use App\Notifications\SubscriptionConfirmed as SubscriptionConfirmedNotification;
+use App\Subscription;
 
 class UpdateSubscriptionStatus
 {
@@ -28,7 +28,7 @@ class UpdateSubscriptionStatus
     {
         $subscription = $event->payment->payable;
 
-        if (! $subscription instanceof Subscription) {
+        if (!$subscription instanceof Subscription) {
             return;
         }
 

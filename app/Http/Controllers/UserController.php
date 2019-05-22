@@ -2,17 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Menu;
-use App\User;
-use Validator;
-use App\UserCategory;
-use UserVerification;
-use Laracasts\Flash\Flash;
-use App\Events\UserDeleted;
-use Illuminate\Http\Request;
 use App\Events\UserCreatedOrChanged;
+use App\Events\UserDeleted;
+use App\User;
+use App\UserCategory;
+use Auth;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Http\Request;
+use Laracasts\Flash\Flash;
+use Menu;
+use UserVerification;
+use Validator;
 
 class UserController extends Controller
 {
@@ -176,7 +176,7 @@ class UserController extends Controller
         if ($id == $user->id) {
             $validator->after(function ($validator) use ($request, $user) {
                 // Check if the user wants to deactivate his own account
-                if (! $request->get('activated')) {
+                if (!$request->get('activated')) {
                     $validator->errors()->add('activated', 'het is niet toegestaan jezelf te deactiveren.');
                     $request->merge(['activated' => $user->activated]);
                 }

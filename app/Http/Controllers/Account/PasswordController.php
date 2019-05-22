@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Account;
 
-use Validator;
-use Laracasts\Flash\Flash;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Laracasts\Flash\Flash;
+use Validator;
 
 class PasswordController extends Controller
 {
@@ -27,7 +27,7 @@ class PasswordController extends Controller
 
         // Validate current password
         $validator->after(function ($validator) use ($request, $user) {
-            if (! Hash::check($request->input('password_current'), $user->password)) {
+            if (!Hash::check($request->input('password_current'), $user->password)) {
                 $validator->errors()->add('password_current', 'huidige wachtwoord is onjuist.');
             }
         });

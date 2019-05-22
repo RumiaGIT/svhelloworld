@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
-use Validator;
-use Illuminate\Http\Request;
 use App\Events\UserCreatedOrChanged;
 use App\Http\Controllers\Controller;
+use App\Notifications\AdminNewUser;
+use App\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
-use Jrean\UserVerification\Traits\VerifiesUsers;
+use Illuminate\Http\Request;
 use Jrean\UserVerification\Facades\UserVerification;
-use App\Notifications\AdminNewUser;
+use Jrean\UserVerification\Traits\VerifiesUsers;
+use Validator;
 
 class RegisterController extends Controller
 {

@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Menu;
 use Closure;
+use Menu;
 
 class SidebarMenu
 {

@@ -2,9 +2,9 @@
 
 namespace App\Listeners;
 
-use Newsletter;
 use App\Events\UserCreatedOrChanged;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Newsletter;
 
 class SubscribeToMailchimpList implements ShouldQueue
 {
@@ -30,7 +30,7 @@ class SubscribeToMailchimpList implements ShouldQueue
             return;
         }
 
-        if (! $event->user->user_category) {
+        if (!$event->user->user_category) {
             return;
         }
 
@@ -39,7 +39,7 @@ class SubscribeToMailchimpList implements ShouldQueue
         $interest_category_id = env('MAILCHIMP_INTEREST_CATEGORY_ID');
         $result = $api->get("lists/$list_id/interest-categories/$interest_category_id/interests");
 
-        if (! isset($result['interests']) || count($result['interests']) == 0) {
+        if (!isset($result['interests']) || count($result['interests']) == 0) {
             return;
         }
 
@@ -61,7 +61,7 @@ class SubscribeToMailchimpList implements ShouldQueue
 
         Newsletter::subscribe($event->user->email, [
             'FNAME' => $event->user->first_name,
-            'LNAME' => trim($event->user->name_prefix.' '.$event->user->last_name),
+            'LNAME' => trim($event->user->name_prefix . ' ' . $event->user->last_name),
         ], '', [
             'interests' => $interests,
         ]);

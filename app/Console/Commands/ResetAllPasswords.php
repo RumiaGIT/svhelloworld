@@ -47,7 +47,7 @@ class ResetAllPasswords extends Command
 
         $bar = $this->output->createProgressBar(count($users));
 
-        if (! $this->confirm('Do you wish to continue?')) {
+        if (!$this->confirm('Do you wish to continue?')) {
             return;
         }
 

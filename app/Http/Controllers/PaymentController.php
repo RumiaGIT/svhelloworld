@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Notifications\AdminNewUserPaid;
-use PDF;
-use Auth;
-use Mollie;
-use App\User;
-use App\Payment;
-use Illuminate\Http\Request;
 use App\Events\PaymentCompleted;
+use App\Notifications\AdminNewUserPaid;
+use App\Payment;
+use App\User;
+use Auth;
+use Illuminate\Http\Request;
+use Mollie;
+use PDF;
 
 class PaymentController extends Controller
 {
@@ -59,7 +59,7 @@ class PaymentController extends Controller
         $user = Auth::user();
         $payment = Payment::findOrFail($id);
 
-        if (! $user->can('view', $payment)) {
+        if (!$user->can('view', $payment)) {
             return abort(403);
         }
 
@@ -77,11 +77,11 @@ class PaymentController extends Controller
         $user = Auth::user();
         $payment = Payment::findOrFail($id);
 
-        if (! $user->can('view', $payment)) {
+        if (!$user->can('view', $payment)) {
             return abort(403);
         }
 
-        if (! $payment->paid()) {
+        if (!$payment->paid()) {
             return abort(404);
         }
 
@@ -101,7 +101,7 @@ class PaymentController extends Controller
         $user = Auth::user();
         $payment = Payment::findOrFail($id);
 
-        if (! $user->can('pay', $payment)) {
+        if (!$user->can('pay', $payment)) {
             return abort(403);
         }
 
@@ -159,7 +159,7 @@ class PaymentController extends Controller
         $user = Auth::user();
         $payment = Payment::findOrFail($id);
 
-        if (! $user->can('pay', $payment)) {
+        if (!$user->can('pay', $payment)) {
             return abort(403);
         }
 
