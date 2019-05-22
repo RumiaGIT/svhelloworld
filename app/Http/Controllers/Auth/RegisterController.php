@@ -122,8 +122,10 @@ class RegisterController extends Controller
         // Fire 'UserCreatedOrChanged' event
         event(new UserCreatedOrChanged($user));
 
-        $admin = User::where('email', 'voorzitter@svhelloworld.nl')->first();
-        $admin->notify(new AdminNewUser($user['first_name'], $user['name_prefix'], $user['last_name'], $user['phone_number'], $user['email']));
+        if ($admin = User::where('email', 'voorzitter@svhelloworld.nl')->first()) {
+            $admin->notify(new AdminNewUser($user['first_name'], $user['name_prefix'], $user['last_name'], $user['phone_number'], $user['email']));
+        }
+        
         return $user;
     }
 }
