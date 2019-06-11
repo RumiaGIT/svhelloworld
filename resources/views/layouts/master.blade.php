@@ -10,7 +10,7 @@
 
     <link rel="icon" type="image/png" href="{{ asset('/images/icon.png') }}" />
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,600,300|Source+Serif+Pro" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{ asset('/css/app.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('/css/style.css') }}">
     @yield('stylesheets')
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

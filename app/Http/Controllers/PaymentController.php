@@ -23,8 +23,9 @@ class PaymentController extends Controller
         $user = Auth::user();
         $open_payments = Payment::where('user_id', $user->id)->whereNull('paid_at')->get();
         $finalized_payments = Payment::where('user_id', $user->id)->whereNotNull('paid_at')->get();
+        $payments = Payment::where('user_id', $user->id)->orderBy('created_at', 'DESC')->get();
 
-        return view('payment.index', compact('open_payments', 'finalized_payments'));
+        return view('payment.index', compact('open_payments', 'finalized_payments', 'payments'));
     }
 
     /**

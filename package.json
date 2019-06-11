@@ -11,7 +11,8 @@
   "license": "MIT",
   "scripts": {
     "prod": "gulp --production",
-    "dev": "gulp watch"
+    "watch": "gulp watch",
+    "dev": "gulp"
   },
   "dependencies": {
     "bootstrap-sass": "^3.3.7",
