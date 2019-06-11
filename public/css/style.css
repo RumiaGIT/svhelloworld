@@ -5161,6 +5161,12 @@ aside#secondary {
       background-color: #1071b9;
       border: none;
       border-radius: 0.5rem; }
+    .panel .panel-body.p-sm {
+      padding: 1.5rem; }
+      .panel .panel-body.p-sm .l-20 {
+        line-height: 20px; }
+      .panel .panel-body.p-sm .l-40 {
+        line-height: 40px; }
 
 footer#footer {
   background: #FFF;
@@ -5218,6 +5224,18 @@ form {
 .avatar {
   border-radius: 100%;
   margin: 0; }
+  .avatar.avatar-icon {
+    line-height: 20px;
+    padding: 10px;
+    font-size: 16px;
+    display: block;
+    width: 40px;
+    text-align: center;
+    color: white; }
+    .avatar.avatar-icon.avatar-warning {
+      background: orange; }
+    .avatar.avatar-icon.avatar-success {
+      background: #009245; }
 
 /*==========  Mobile First Method  ==========*/
 /* Custom, iPhone Retina */

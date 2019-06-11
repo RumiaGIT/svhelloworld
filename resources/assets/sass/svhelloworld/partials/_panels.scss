@@ -36,5 +36,10 @@
             border: none;
             border-radius: 0.5rem;
         }
+        &.p-sm {
+            padding: 1.5rem;
+            .l-20 { line-height: 20px; }
+            .l-40 { line-height: 40px; }
+        }
     }
 }

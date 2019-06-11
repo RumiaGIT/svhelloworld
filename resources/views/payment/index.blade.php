@@ -2,70 +2,54 @@
 @section('title', 'Betalingen')
 
 @section('content')
-    <h3>Openstaande betalingen</h3>
-    @if ($open_payments->count())
-        <p>Dit is een overzicht van openstaande betalingen.</p>
 
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Beschrijving</th>
-                        <th>Status</th>
-                        <th>Acties</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($open_payments as $payment)
-                        <tr>
-                            <td>{{ $payment->id }}</th>
-                            <td>{{ $payment->description }}</td>
-                            <td>{!! $payment->paid() ? '<span class="label label-success">Betaald</a>' : '<span class="label label-warning">Nog niet betaald</span>' !!}</td>
-                            <td>
-                                <a href="{{ route('payment.show', $payment->id) }}" class="btn btn-primary btn-xs">Bekijken</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+    @if (! $payments->count())
+        <div class="text-center">
+            Nothing to see here ;)
         </div>
-    @else
-        <p class="alert alert-info">Je hebt op dit moment geen openstaande betalingen.</p>
     @endif
 
-    <h3>Betalingsgeschiedenis</h3>
-    @if ($finalized_payments->count())
-        <p>Dit is een overzicht van afgeronde betalingen.</p>
+    @foreach($payments as $payment)
+        <div class="panel panel-default">
+            <div class="panel-body p-sm">
+                <div class="row">
+                    <div class="col-md-1">
+                        @if ($payment->paid())
+                            <div class="avatar avatar-icon avatar-success">
+                                <i class="fa fa-fw fa-check"></i>
+                            </div>
+                        @else
+                            <div class="avatar avatar-icon avatar-warning">
+                                <i class="fa fa-fw fa-dollar"></i>
+                            </div>
+                        @endif
+                    </div>
+                    <div class="col-md-6 l-20">
+                        <strong>{{ $payment->description }}</strong><br>
+                        <span class="small">
+                            #{{ $payment->id }}
+                        </span>
+                    </div>
 
-        <div class="table-responsive">
-            <table class="table table-bordered table-striped table-hover">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Beschrijving</th>
-                        <th>Status</th>
-                        <th>Betaald op</th>
-                        <th>Acties</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($finalized_payments as $payment)
-                        <tr>
-                            <td>{{ $payment->id }}</th>
-                            <td>{{ $payment->description }}</td>
-                            <td>{!! $payment->paid() ? '<span class="label label-success">Betaald</a>' : '<span class="label label-warning">Nog niet betaald</span>' !!}</td>
-                            <td>@datetime($payment->paid_at)</td>
-                            <td>
-                                <a href="{{ route('payment.show', $payment->id) }}" class="btn btn-primary btn-xs">Bekijken</a>
-                                <a href="{{ route('payment.invoice', $payment->id) }}" class="btn btn-primary btn-xs">Factuur</a>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+                    <div class="col-md-2 l-40">
+                        <strong>&euro; {{ $payment->amount }}</strong><br>
+                    </div>
+
+                    <div class="col-md-3 l-40 text-right">
+                        <a href="{{ route('payment.show', $payment->id) }}" class="btn btn-link">Details</a>
+                        @if ($payment->paid())
+                            <a href="{{ route('payment.invoice', $payment->id) }}" class="btn btn-link"><strong>Factuur</strong></a>
+                        @else
+                            <a href="{{ route('payment.pay', $payment->id) }}" class="btn btn-link"><strong>Betalen</strong></a>
+                        @endif
+                    </div>
+
+                    {{-- <div class="col-md-3 l-40">
+                        <strong>&euro; {{ $payment->amount }}</strong><br>
+                    </div> --}}
+                </div>
+            </div>
         </div>
-    @else
-        <p class="alert alert-info">Je hebt op dit moment nog geen afgeronde betalingen.</p>
-    @endif
+    @endforeach
+
 @endsection
