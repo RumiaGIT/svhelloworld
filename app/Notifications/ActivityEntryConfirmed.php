@@ -3,8 +3,8 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class ActivityEntryConfirmed extends Notification
 {
@@ -26,8 +26,6 @@ class ActivityEntryConfirmed extends Notification
 
     /**
      * Create a new notification instance.
-     *
-     * @return void
      */
     public function __construct($activity_entry_id, $activity_title)
     {
@@ -54,7 +52,7 @@ class ActivityEntryConfirmed extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject(sprintf('Aanmelding voor \'%s\' succesvol', $this->activity_title))
             ->line([
                 sprintf('Bedankt voor je aanmelding, je hebt je succesvol aangemeld voor \'%s\'.', $this->activity_title),

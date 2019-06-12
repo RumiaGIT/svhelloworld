@@ -15,6 +15,7 @@ before_script:
 
 script:
   - php artisan code:analyse --level=1
+  - vendor/bin/ecs check app
   - vendor/bin/phpunit
 
 notifications:

@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Menu;
 use Closure;
+use Menu;
 
 class SidebarMenu
 {
@@ -11,7 +11,6 @@ class SidebarMenu
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @param  string|null  $guard
      * @return mixed
      */

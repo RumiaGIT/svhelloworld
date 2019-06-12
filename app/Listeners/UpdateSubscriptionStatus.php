@@ -2,27 +2,21 @@
 
 namespace App\Listeners;
 
-use App\Subscription;
 use App\Events\PaymentCompleted;
 use App\Notifications\SubscriptionConfirmed as SubscriptionConfirmedNotification;
+use App\Subscription;
 
 class UpdateSubscriptionStatus
 {
     /**
      * Create the event listener.
-     *
-     * @return void
      */
     public function __construct()
     {
-        //
     }
 
     /**
      * Handle the event.
-     *
-     * @param  PaymentCompleted  $event
-     * @return void
      */
     public function handle(PaymentCompleted $event)
     {

@@ -2,8 +2,8 @@
 
 namespace App\Notifications;
 
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class PaymentCreated extends Notification
 {
@@ -18,7 +18,6 @@ class PaymentCreated extends Notification
      * Create a new notification instance.
      *
      * @param  int  $payment_id
-     * @return void
      */
     public function __construct($payment_id)
     {
@@ -44,7 +43,7 @@ class PaymentCreated extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject('Er staat een nieuwe betaling voor je klaar')
             ->line([
                 'Er staat een nieuwe betaling voor je klaar.',

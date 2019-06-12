@@ -9,8 +9,9 @@ class Payment extends Model
 {
     use SoftDeletes;
 
-    const STATUS_OPEN = 'open';
-    const STATUS_PAID = 'paid';
+    public const STATUS_OPEN = 'open';
+
+    public const STATUS_PAID = 'paid';
 
     /**
      * The attributes that are mass assignable.
@@ -40,9 +41,6 @@ class Payment extends Model
 
     /**
      * Constructor.
-     *
-     * @param  array  $attributes
-     * @return void
      */
     public function __construct(array $attributes = [])
     {
@@ -76,7 +74,7 @@ class Payment extends Model
      */
     public function paid()
     {
-        return $this->status == self::STATUS_PAID;
+        return $this->status === self::STATUS_PAID;
     }
 
     /**

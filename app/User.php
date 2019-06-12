@@ -2,14 +2,15 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Notifications\ResetPasswordNotification;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
 class User extends Authenticatable
 {
-    use Notifiable, SoftDeletes;
+    use Notifiable;
+    use SoftDeletes;
 
     /**
      * The attributes that are mass assignable.
@@ -61,29 +62,27 @@ class User extends Authenticatable
      */
     public function full_name()
     {
-        return $this->first_name.($this->name_prefix ? ' '.$this->name_prefix : '').' '.$this->last_name;
+        return $this->first_name . ($this->name_prefix ? ' ' . $this->name_prefix : '') . ' ' . $this->last_name;
     }
 
     /**
      * Checks if the user has the given account type.
      *
-     * @param $account_type
      * @return bool
      */
     public function hasAccountType($account_type)
     {
-        return ! is_null($this->account_type) && $this->account_type == $account_type;
+        return $this->account_type !== null && $this->account_type === $account_type;
     }
 
     /**
      * Checks if the user has the given user category.
      *
-     * @param $user_category
      * @return bool
      */
     public function hasUserCategory($user_category)
     {
-        return ! is_null($this->user_category_alias) && $this->user_category_alias == $user_category;
+        return $this->user_category_alias !== null && $this->user_category_alias === $user_category;
     }
 
     /**
@@ -138,7 +137,6 @@ class User extends Authenticatable
      * Send the password reset notification.
      *
      * @param  string  $token
-     * @return void
      */
     public function sendPasswordResetNotification($token)
     {

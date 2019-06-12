@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers\Account;
 
-use Illuminate\Http\Request;
 use App\Events\UserCreatedOrChanged;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Jrean\UserVerification\Traits\VerifiesUsers;
-use Jrean\UserVerification\Facades\UserVerification;
-use Jrean\UserVerification\Exceptions\UserNotFoundException;
 use Jrean\UserVerification\Exceptions\TokenMismatchException;
 use Jrean\UserVerification\Exceptions\UserIsVerifiedException;
+use Jrean\UserVerification\Exceptions\UserNotFoundException;
+use Jrean\UserVerification\Facades\UserVerification;
+use Jrean\UserVerification\Traits\VerifiesUsers;
 
 class EmailController extends Controller
 {
@@ -54,7 +54,6 @@ class EmailController extends Controller
     /**
      * Email verificate index view.
      *
-     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request)
@@ -69,7 +68,6 @@ class EmailController extends Controller
     /**
      * Email edit view.
      *
-     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function edit(Request $request)
@@ -80,7 +78,6 @@ class EmailController extends Controller
     /**
      * Updates the users' email address.
      *
-     * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function update(Request $request)
@@ -107,7 +104,6 @@ class EmailController extends Controller
     /**
      * Resend the e-mail verification again.
      *
-     * @param  Request $request
      * @return Response
      */
     public function resend(Request $request)
@@ -118,7 +114,6 @@ class EmailController extends Controller
     /**
      * Resend the e-mail verification again.
      *
-     * @param  Request $request
      * @return Response
      */
     public function resendVerification(Request $request)

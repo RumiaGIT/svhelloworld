@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Notifications\AdminNewUserPaid;
-use PDF;
-use Auth;
-use Mollie;
-use App\User;
-use App\Payment;
-use Illuminate\Http\Request;
 use App\Events\PaymentCompleted;
+use App\Notifications\AdminNewUserPaid;
+use App\Payment;
+use App\User;
+use Auth;
+use Illuminate\Http\Request;
+use Mollie;
+use PDF;
 
 class PaymentController extends Controller
 {
@@ -34,18 +34,15 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -126,7 +123,6 @@ class PaymentController extends Controller
     /**
      * Payment webhook.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function webhook(Request $request)
@@ -192,19 +188,16 @@ class PaymentController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
@@ -215,11 +208,9 @@ class PaymentController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 
     /**
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return Response
      */

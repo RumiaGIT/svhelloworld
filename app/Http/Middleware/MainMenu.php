@@ -3,8 +3,8 @@
 namespace App\Http\Middleware;
 
 use Auth;
-use Menu;
 use Closure;
+use Menu;
 
 class MainMenu
 {
@@ -12,7 +12,6 @@ class MainMenu
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @param  string|null  $guard
      * @return mixed
      */
