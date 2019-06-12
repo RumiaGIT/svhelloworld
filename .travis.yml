@@ -16,8 +16,7 @@ before_script:
   - php artisan key:generate
 
 script:
-  - php artisan code:analyse --level=1
-  - vendor/bin/ecs check app
+  - php artisan insights --no-interaction --min-quality=80 --min-architecture=80 --min-complexity=80
   - vendor/bin/phpunit
 
 notifications:
