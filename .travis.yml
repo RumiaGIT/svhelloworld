@@ -26,13 +26,14 @@ jobs:
     - name: "Unit Tests (PHP7.3)"
       php: 7.3
       script: vendor/bin/phpunit
-    - name: "Browser Tests (PHP7.3)"
+    - name: "Browser Tests (PHP7.2)"
       php: 7.2
       script:
         - export DISPLAY=:99.0
         - ./vendor/laravel/dusk/bin/chromedriver-linux &
         - cp .env.testing .env
         - php artisan serve &
+        - php artisan dusk:chrome-driver
         - php artisan dusk
     - name: "Browser Tests (PHP7.3)"
       php: 7.3
@@ -41,6 +42,7 @@ jobs:
         - ./vendor/laravel/dusk/bin/chromedriver-linux &
         - cp .env.testing .env
         - php artisan serve &
+        - php artisan dusk:chrome-driver
         - php artisan dusk
 
 notifications:
