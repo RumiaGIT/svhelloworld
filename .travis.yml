@@ -14,32 +14,34 @@ before_script:
 
 jobs:
   include:
-    - name: "Code Quality"
-      php:
-        - 7.2
-        - 7.3
+    - name: "Code Quality (PHP7.2)"
+      php: 7.2
       script: php artisan insights --no-interaction --min-quality=80 --min-architecture=80 --min-complexity=80
-    - name: "Unit Tests"
-      php:
-        - 7.2
-        - 7.3
+    - name: "Code Quality (PHP7.3)"
+      php: 7.3
+      script: php artisan insights --no-interaction --min-quality=80 --min-architecture=80 --min-complexity=80
+    - name: "Unit Tests (PHP7.2)"
+      php: 7.2
       script: vendor/bin/phpunit
-    - name: "Browser Tests"
-      php:
-        - 7.2
-        - 7.3
-      before_script:
+    - name: "Unit Tests (PHP7.3)"
+      php: 7.3
+      script: vendor/bin/phpunit
+    - name: "Browser Tests (PHP7.3)"
+      php: 7.2
+      script:
         - export DISPLAY=:99.0
-        - sh -e /etc/init.d/xvfb start
         - ./vendor/laravel/dusk/bin/chromedriver-linux &
         - cp .env.testing .env
         - php artisan serve &
-      script:
         - php artisan dusk
-
-script:
-  - php artisan insights --no-interaction --min-quality=80 --min-architecture=80 --min-complexity=80
-  - vendor/bin/phpunit
+    - name: "Browser Tests (PHP7.3)"
+      php: 7.3
+      script:
+        - export DISPLAY=:99.0
+        - ./vendor/laravel/dusk/bin/chromedriver-linux &
+        - cp .env.testing .env
+        - php artisan serve &
+        - php artisan dusk
 
 notifications:
   webhooks:
