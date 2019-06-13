@@ -4,6 +4,8 @@ services:
 
 php:
   - 7.1
+  - 7.2
+  - 7.3
 
 before_script:
   - gem install mime-types --version "< 3"
@@ -14,6 +16,22 @@ before_script:
   - travis_retry composer self-update
   - composer install --no-interaction
   - php artisan key:generate
+
+jobs:
+  include:
+    - name: "Code Quality"
+      script: php artisan insights --no-interaction --min-quality=80 --min-architecture=80 --min-complexity=80
+    - name: "Unit Tests"
+      script: vendor/bin/phpunit
+    - name: "Browser Tests"
+      before_script:
+        - export DISPLAY=:99.0
+        - sh -e /etc/init.d/xvfb start
+        - ./vendor/laravel/dusk/bin/chromedriver-linux &
+        - cp .env.testing .env
+        - php artisan serve &
+      script:
+        - php artisan dusk
 
 script:
   - php artisan insights --no-interaction --min-quality=80 --min-architecture=80 --min-complexity=80
