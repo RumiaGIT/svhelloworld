@@ -18,7 +18,7 @@ class UserCategory extends Model
      *
      * @var bool
      */
-    protected $incrementing = false;
+    public $incrementing = false;
 
     /**
      * Indicates if the model should be timestamped.
