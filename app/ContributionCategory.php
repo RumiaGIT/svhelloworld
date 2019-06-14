@@ -18,14 +18,14 @@ class ContributionCategory extends Model
      *
      * @var bool
      */
-    protected $incrementing = false;
+    public $incrementing = false;
 
     /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
      */
-    protected $timestamps = false;
+    public $timestamps = false;
 
     /**
      * The database table used by the model.
