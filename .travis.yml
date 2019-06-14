@@ -34,12 +34,16 @@ jobs:
     - name: "Browser Tests (PHP7.2)"
       php: 7.2
       script:
+        - export DISPLAY=:99.0
+        - sh -e /etc/init.d/xvfb start
         - ./vendor/laravel/dusk/bin/chromedriver-linux --headless --no-sandbox --disable-gpu --remote-debugging-port=9222 http://localhost &
         - php artisan serve &
         - php artisan dusk
     - name: "Browser Tests (PHP7.3)"
       php: 7.3
       script:
+        - export DISPLAY=:99.0
+        - sh -e /etc/init.d/xvfb start
         - ./vendor/laravel/dusk/bin/chromedriver-linux --disable-gpu --remote-debugging-port=9222 http://localhost &
         - php artisan serve &
         - php artisan dusk
