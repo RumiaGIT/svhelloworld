@@ -25,7 +25,7 @@ class UserCategory extends Model
      *
      * @var bool
      */
-    protected $timestamps = false;
+    public $timestamps = false;
 
     /**
      * The database table used by the model.
