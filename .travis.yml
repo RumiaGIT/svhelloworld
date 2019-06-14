@@ -4,6 +4,9 @@ dist: trusty
 services:
   - mysql
 
+addons:
+  chrome: stable
+
 before_script:
   - gem install mime-types --version "< 3"
   - gem install --conservative mailcatcher
