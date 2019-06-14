@@ -15,10 +15,10 @@ class ActivityEntry extends Model
      * @var array
      */
     protected $fillable = [
-      'user_id',
-      'activity_id',
-      'activity_price_id',
-      'notes',
+        'user_id',
+        'activity_id',
+        'activity_price_id',
+        'notes',
     ];
 
     /**
@@ -62,7 +62,7 @@ class ActivityEntry extends Model
      */
     public function confirmed()
     {
-        return ! is_null($this->confirmed_at);
+        return $this->confirmed_at !== null;
     }
 
     /**

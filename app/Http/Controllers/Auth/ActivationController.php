@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Auth;
 
-use Laracasts\Flash\Flash;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Jrean\UserVerification\Traits\VerifiesUsers;
-use Jrean\UserVerification\Facades\UserVerification;
-use Jrean\UserVerification\Exceptions\UserNotFoundException;
+use Illuminate\Http\Request;
 use Jrean\UserVerification\Exceptions\TokenMismatchException;
 use Jrean\UserVerification\Exceptions\UserIsVerifiedException;
+use Jrean\UserVerification\Exceptions\UserNotFoundException;
+use Jrean\UserVerification\Facades\UserVerification;
+use Jrean\UserVerification\Traits\VerifiesUsers;
+use Laracasts\Flash\Flash;
 
 class ActivationController extends Controller
 {
@@ -53,7 +53,6 @@ class ActivationController extends Controller
     /**
      * Email verificate index view.
      *
-     * @param Request $request
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function index(Request $request)
@@ -68,7 +67,6 @@ class ActivationController extends Controller
     /**
      * Handle the user verification.
      *
-     * @param Request $request
      * @param  string $token
      * @return Response
      */
@@ -79,15 +77,15 @@ class ActivationController extends Controller
         try {
             flash('Je account is geactiveerd.', 'success');
             UserVerification::process($request->input('email'), $token, $this->userTable());
-        } catch (UserNotFoundException $e) {
+        } catch (UserNotFoundException $exception) {
             flash('Het account kon niet worden geactiveerd omdat het niet werd gevonden.', 'error');
 
             return redirect($this->redirectIfVerificationFails());
-        } catch (UserIsVerifiedException $e) {
+        } catch (UserIsVerifiedException $exception) {
             flash('Het account is al geactiveerd.', 'warning');
 
             return redirect($this->redirectIfVerified());
-        } catch (TokenMismatchException $e) {
+        } catch (TokenMismatchException $exception) {
             flash('Het account kon niet worden geactiveerd.', 'error');
 
             return redirect($this->redirectIfVerificationFails());

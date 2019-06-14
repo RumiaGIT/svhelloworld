@@ -1,7 +1,11 @@
+sudo: required
 language: php
+dist: trusty
+services:
+  - mysql
 
-php:
-  - 7.1
+addons:
+  chrome: stable
 
 before_script:
   - gem install mime-types --version "< 3"
@@ -10,11 +14,41 @@ before_script:
   - cp .env.travis .env
   - mysql -e 'create database mijn_sv_helloworld_test;'
   - travis_retry composer self-update
-  - composer install --no-interaction
+  - composer install --no-interaction --no-ansi
   - php artisan key:generate
 
-script:
-  - vendor/bin/phpunit
+jobs:
+  include:
+    - name: "Code Quality (PHP7.2)"
+      php: 7.2
+      script: php artisan insights --no-interaction --min-quality=80 --min-architecture=80 --min-complexity=80
+    - name: "Code Quality (PHP7.3)"
+      php: 7.3
+      script: php artisan insights --no-interaction --min-quality=80 --min-architecture=80 --min-complexity=80
+    - name: "Unit Tests (PHP7.2)"
+      php: 7.2
+      script: vendor/bin/phpunit
+    - name: "Unit Tests (PHP7.3)"
+      php: 7.3
+      script: vendor/bin/phpunit
+    - name: "Browser Tests (PHP7.2)"
+      php: 7.2
+      script:
+        - export DISPLAY=:99.0
+        - sh -e /etc/init.d/xvfb start
+        - php artisan dusk:chrome-driver
+        - ./vendor/laravel/dusk/bin/chromedriver-linux --headless --no-sandbox --disable-gpu --remote-debugging-port=9222 http://localhost &
+        - php artisan serve &
+        - php artisan dusk
+    - name: "Browser Tests (PHP7.3)"
+      php: 7.3
+      script:
+        - export DISPLAY=:99.0
+        - sh -e /etc/init.d/xvfb start
+        - php artisan dusk:chrome-driver
+        - ./vendor/laravel/dusk/bin/chromedriver-linux --disable-gpu --remote-debugging-port=9222 http://localhost &
+        - php artisan serve &
+        - php artisan dusk
 
 notifications:
   webhooks:

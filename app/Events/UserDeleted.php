@@ -4,13 +4,14 @@ namespace App\Events;
 
 use App\User;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Queue\SerializesModels;
 
 class UserDeleted
 {
-    use InteractsWithSockets, SerializesModels;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     /**
      * The user that needs to be unsubscribed.
@@ -23,7 +24,6 @@ class UserDeleted
      * Create a new event instance.
      *
      * @param User $user The user that needs to be unsubscribed.
-     * @return void
      */
     public function __construct(User $user)
     {

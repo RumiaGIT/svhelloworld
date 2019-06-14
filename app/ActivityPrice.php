@@ -15,9 +15,9 @@ class ActivityPrice extends Model
      * @var array
      */
     protected $fillable = [
-      'user_category_alias',
-      'activity_id',
-      'amount',
+        'user_category_alias',
+        'activity_id',
+        'amount',
     ];
 
     /**

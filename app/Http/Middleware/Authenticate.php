@@ -11,7 +11,6 @@ class Authenticate
      * Handle an incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
      * @param  string|null  $guard
      * @return mixed
      */
@@ -20,9 +19,8 @@ class Authenticate
         if (Auth::guard($guard)->guest()) {
             if ($request->ajax() || $request->wantsJson()) {
                 return response('Unauthorized.', 401);
-            } else {
-                return redirect()->guest('inloggen');
             }
+            return redirect()->guest('inloggen');
         }
 
         return $next($request);

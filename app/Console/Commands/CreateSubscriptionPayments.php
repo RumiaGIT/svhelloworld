@@ -2,10 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Notifications\PaymentCreated;
 use App\Payment;
 use App\Subscription;
 use Illuminate\Console\Command;
-use App\Notifications\PaymentCreated;
 
 class CreateSubscriptionPayments extends Command
 {
@@ -25,8 +25,6 @@ class CreateSubscriptionPayments extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -58,7 +56,7 @@ class CreateSubscriptionPayments extends Command
 
         foreach ($subscriptions as $subscription) {
             // Create the payment
-            $payment = new Payment;
+            $payment = new Payment();
             $payment->amount = $subscription->contribution->amount;
             $payment->description = sprintf('Contributie voor periode %s.', $subscription->contribution->period->name);
 

@@ -10,8 +10,6 @@ class AccountType
      * Handle an incoming request and checks if the user has the required account type.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @param  $account_types
      * @return mixed
      */
     public function handle($request, Closure $next, ...$account_types)

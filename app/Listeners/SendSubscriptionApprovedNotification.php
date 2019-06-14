@@ -9,19 +9,13 @@ class SendSubscriptionApprovedNotification
 {
     /**
      * Create the event listener.
-     *
-     * @return void
      */
     public function __construct()
     {
-        //
     }
 
     /**
      * Handle the event.
-     *
-     * @param  SubscriptionApproved  $event
-     * @return void
      */
     public function handle(SubscriptionApproved $event)
     {

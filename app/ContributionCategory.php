@@ -11,7 +11,7 @@ class ContributionCategory extends Model
      *
      * @var string
      */
-    public $primaryKey = 'alias';
+    protected $primaryKey = 'alias';
 
     /**
      * Set whether the primary key is incrementing.

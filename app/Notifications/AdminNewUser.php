@@ -3,19 +3,37 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class AdminNewUser extends Notification
 {
     use Queueable;
 
-    public $first_name;
-    public $name_prefix = "";
-    public $last_name;
-    public $phone_number;
-    public $email;
+    /**
+     * @var string
+     */
+    protected $first_name;
+
+    /**
+     * @var string
+     */
+    protected $name_prefix = '';
+
+    /**
+     * @var string
+     */
+    protected $last_name;
+
+    /**
+     * @var string
+     */
+    protected $phone_number;
+
+    /**
+     * @var string
+     */
+    protected $email;
 
     public function __construct($first_name, $name_prefix, $last_name, $phone_number, $email)
     {
@@ -45,12 +63,12 @@ class AdminNewUser extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('Een nieuw lid heeft zich aangemeld voor de studievereniging')
-                    ->line('Naam: ' . $this->first_name . ' ' . $this->name_prefix . ' ' . $this->last_name)
-                    ->line('Telefoonnummer: ' . $this->phone_number)
-                    ->line('Email: ' . $this->email)
-                    ->action('Gebruikers beheren', url('http://mijn.svhelloworld.nl/gebruikers'));
+        return (new MailMessage())
+            ->line('Een nieuw lid heeft zich aangemeld voor de studievereniging')
+            ->line('Naam: ' . $this->first_name . ' ' . $this->name_prefix . ' ' . $this->last_name)
+            ->line('Telefoonnummer: ' . $this->phone_number)
+            ->line('Email: ' . $this->email)
+            ->action('Gebruikers beheren', url('http://mijn.svhelloworld.nl/gebruikers'));
     }
 
     /**
@@ -62,7 +80,6 @@ class AdminNewUser extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
         ];
     }
 }

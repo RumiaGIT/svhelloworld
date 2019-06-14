@@ -3,8 +3,8 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Notifications\Notification;
 
 class SubscriptionApproved extends Notification
 {
@@ -15,19 +15,17 @@ class SubscriptionApproved extends Notification
      *
      * @var int
      */
-    public $subscription_id;
+    protected $subscription_id;
 
     /**
      * The subscription period name.
      *
      * @var int
      */
-    public $period_name;
+    protected $period_name;
 
     /**
      * Create a new notification instance.
-     *
-     * @return void
      */
     public function __construct($subscription_id, $period_name)
     {
@@ -54,7 +52,7 @@ class SubscriptionApproved extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject('Je inschrijving is goedgekeurd!')
             ->line(sprintf('Goed nieuws! Je inschrijving voor periode \'%s\' is goedgekeurd.', $this->period_name))
             ->line([

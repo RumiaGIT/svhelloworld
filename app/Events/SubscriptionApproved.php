@@ -4,13 +4,14 @@ namespace App\Events;
 
 use App\Subscription;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Queue\SerializesModels;
 
 class SubscriptionApproved
 {
-    use InteractsWithSockets, SerializesModels;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     /**
      * The subscription where the payment belongs to.
@@ -44,7 +45,6 @@ class SubscriptionApproved
      * Create a new event instance.
      *
      * @param Subscription $subscription The subscription that has been approved.
-     * @return void
      */
     public function __construct(Subscription $subscription)
     {

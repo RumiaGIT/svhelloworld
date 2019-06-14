@@ -4,13 +4,14 @@ namespace App\Events;
 
 use App\ActivityEntry;
 use Illuminate\Broadcasting\Channel;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Broadcasting\InteractsWithSockets;
+use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Queue\SerializesModels;
 
 class UserAppliedForActivity
 {
-    use InteractsWithSockets, SerializesModels;
+    use InteractsWithSockets;
+    use SerializesModels;
 
     /**
      * The activity entry where the payment belongs to.
@@ -44,7 +45,6 @@ class UserAppliedForActivity
      * Create a new event instance.
      *
      * @param ActivityEntry $activity_entry The user's activity entry.
-     * @return void
      */
     public function __construct(ActivityEntry $activity_entry)
     {

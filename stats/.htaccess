@@ -1,4 +1,0 @@
-AuthType Basic
-AuthName "Members Only"
-AuthUserFile /var/www/clients/client29/web56/web/stats/.htpasswd_stats
-require valid-user

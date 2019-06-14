@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use App\User;
 use App\Contribution;
-use App\Subscription;
-use Illuminate\Http\Request;
 use App\Events\SubscriptionApproved;
+use App\Subscription;
+use App\User;
+use Auth;
+use Illuminate\Http\Request;
 
 class SubscriptionController extends Controller
 {
@@ -36,7 +36,7 @@ class SubscriptionController extends Controller
     {
         $user = Auth::user();
 
-        if (is_null($slug)) {
+        if ($slug === null) {
             return redirect(route('subscription.index'));
         }
 
@@ -58,7 +58,6 @@ class SubscriptionController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  string $slug
      * @return \Illuminate\Http\Response
      */
@@ -131,19 +130,16 @@ class SubscriptionController extends Controller
      */
     public function edit($id)
     {
-        //
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        //
     }
 
     /**
@@ -154,7 +150,6 @@ class SubscriptionController extends Controller
      */
     public function destroy($id)
     {
-        //
     }
 
     /**
@@ -172,7 +167,6 @@ class SubscriptionController extends Controller
     /**
      * Approve the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -199,7 +193,6 @@ class SubscriptionController extends Controller
     /**
      * Decline the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
@@ -223,7 +216,6 @@ class SubscriptionController extends Controller
     /**
      * Returns the available contributions for the given user.
      *
-     * @param  User   $user
      * @param  array  $ignoreCurrentSubscriptions
      * @return array
      */
@@ -238,7 +230,7 @@ class SubscriptionController extends Controller
             })->all();
         }
 
-        $contributions = Contribution::where('contribution_category_alias', $user->contribution_category_alias)
+        return Contribution::where('contribution_category_alias', $user->contribution_category_alias)
             ->where([
                 ['available_from', '<=', date('Y-m-d H:i:s')],
                 ['available_to', '>', date('Y-m-d H:i:s')],
@@ -247,7 +239,5 @@ class SubscriptionController extends Controller
                 $query->whereNotIn('id', $periods);
             })
             ->orderBy('available_from', 'asc');
-
-        return $contributions;
     }
 }

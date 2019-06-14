@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use App\User;
 use App\Activity;
 use App\ActivityEntry;
-use Illuminate\Http\Request;
 use App\Events\UserAppliedForActivity;
 use App\Notifications\ActivityEntryConfirmed;
+use App\User;
+use Auth;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class ActivityEntryController extends Controller
 {
@@ -35,7 +35,7 @@ class ActivityEntryController extends Controller
     {
         $user = Auth::user();
 
-        if (is_null($id)) {
+        if ($id === null) {
             return redirect(route('activity.index'));
         }
 
@@ -68,7 +68,6 @@ class ActivityEntryController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
@@ -93,13 +92,13 @@ class ActivityEntryController extends Controller
         $today = Carbon::today();
 
         //Check if join date hasn't expired
-        if(!($activity->available_from <= $today && $activity->available_to >= $today)) {
+        if (! ($activity->available_from <= $today && $activity->available_to >= $today)) {
             flash('Aanmeldperiode is verlopen.', 'info');
             return redirect(route('activity.show', $activity->id));
         }
 
         //Check member limit
-        if($activity->entries()->count() >= $activity->member_limit && $activity->member_limit != 0 && $activity->member_limit != null) {
+        if ($activity->entries()->count() >= $activity->member_limit && $activity->member_limit !== 0 && $activity->member_limit !== null) {
             flash('Het is niet meer mogelijk om je aan te melden voor deze acitviteit want, de activiteit heeft het maximum aantal deelnemers bereikt.', 'info');
             return redirect(route('activity.show', $activity->id));
         }

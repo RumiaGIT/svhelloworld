@@ -26,8 +26,6 @@ class ResetAllPasswords extends Command
 
     /**
      * Create a new command instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -53,8 +51,9 @@ class ResetAllPasswords extends Command
 
         foreach ($users as $user) {
             // Send password reset link to the user
-            $response = $this->broker()->sendResetLink(
-                ['email' => $user->email], $this->resetNotifier()
+            $this->broker()->sendResetLink(
+                ['email' => $user->email],
+                $this->resetNotifier()
             );
 
             $bar->advance();
