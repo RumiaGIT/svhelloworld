@@ -34,13 +34,13 @@ jobs:
     - name: "Browser Tests (PHP7.2)"
       php: 7.2
       script:
-        - google-chrome-stable --headless --no-sandbox --disable-gpu --remote-debugging-port=9222 http://localhost &
+        - ./vendor/laravel/dusk/bin/chromedriver-linux --headless --no-sandbox --disable-gpu --remote-debugging-port=9222 http://localhost &
         - php artisan serve &
         - php artisan dusk
     - name: "Browser Tests (PHP7.3)"
       php: 7.3
       script:
-        - google-chrome-stable --headless --no-sandbox --disable-gpu --remote-debugging-port=9222 http://localhost &
+        - ./vendor/laravel/dusk/bin/chromedriver-linux --disable-gpu --remote-debugging-port=9222 http://localhost &
         - php artisan serve &
         - php artisan dusk
 
