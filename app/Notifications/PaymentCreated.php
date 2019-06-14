@@ -12,7 +12,7 @@ class PaymentCreated extends Notification
      *
      * @var int
      */
-    public $payment_id;
+    protected $payment_id;
 
     /**
      * Create a new notification instance.

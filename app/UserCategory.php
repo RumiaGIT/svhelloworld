@@ -11,21 +11,21 @@ class UserCategory extends Model
      *
      * @var string
      */
-    public $primaryKey = 'alias';
+    protected $primaryKey = 'alias';
 
     /**
      * Set whether the primary key is incrementing.
      *
      * @var bool
      */
-    public $incrementing = false;
+    protected $incrementing = false;
 
     /**
      * Indicates if the model should be timestamped.
      *
      * @var bool
      */
-    public $timestamps = false;
+    protected $timestamps = false;
 
     /**
      * The database table used by the model.

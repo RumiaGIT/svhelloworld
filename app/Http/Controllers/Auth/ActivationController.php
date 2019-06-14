@@ -77,15 +77,15 @@ class ActivationController extends Controller
         try {
             flash('Je account is geactiveerd.', 'success');
             UserVerification::process($request->input('email'), $token, $this->userTable());
-        } catch (UserNotFoundException $e) {
+        } catch (UserNotFoundException $exception) {
             flash('Het account kon niet worden geactiveerd omdat het niet werd gevonden.', 'error');
 
             return redirect($this->redirectIfVerificationFails());
-        } catch (UserIsVerifiedException $e) {
+        } catch (UserIsVerifiedException $exception) {
             flash('Het account is al geactiveerd.', 'warning');
 
             return redirect($this->redirectIfVerified());
-        } catch (TokenMismatchException $e) {
+        } catch (TokenMismatchException $exception) {
             flash('Het account kon niet worden geactiveerd.', 'error');
 
             return redirect($this->redirectIfVerificationFails());

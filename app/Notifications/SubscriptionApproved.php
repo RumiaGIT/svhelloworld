@@ -15,14 +15,14 @@ class SubscriptionApproved extends Notification
      *
      * @var int
      */
-    public $subscription_id;
+    protected $subscription_id;
 
     /**
      * The subscription period name.
      *
      * @var int
      */
-    public $period_name;
+    protected $period_name;
 
     /**
      * Create a new notification instance.

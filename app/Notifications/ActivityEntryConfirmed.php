@@ -15,14 +15,14 @@ class ActivityEntryConfirmed extends Notification
      *
      * @var int
      */
-    public $activity_entry_id;
+    protected $activity_entry_id;
 
     /**
      * The activity title.
      *
      * @var string
      */
-    public $activity_title;
+    protected $activity_title;
 
     /**
      * Create a new notification instance.

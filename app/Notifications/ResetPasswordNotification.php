@@ -12,7 +12,7 @@ class ResetPasswordNotification extends Notification
      *
      * @var string
      */
-    public $token;
+    protected $token;
 
     /**
      * Create a notification instance.

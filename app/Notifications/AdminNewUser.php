@@ -10,15 +10,30 @@ class AdminNewUser extends Notification
 {
     use Queueable;
 
-    public $first_name;
+    /**
+     * @var string
+     */
+    protected $first_name;
 
-    public $name_prefix = '';
+    /**
+     * @var string
+     */
+    protected $name_prefix = '';
 
-    public $last_name;
+    /**
+     * @var string
+     */
+    protected $last_name;
 
-    public $phone_number;
+    /**
+     * @var string
+     */
+    protected $phone_number;
 
-    public $email;
+    /**
+     * @var string
+     */
+    protected $email;
 
     public function __construct($first_name, $name_prefix, $last_name, $phone_number, $email)
     {

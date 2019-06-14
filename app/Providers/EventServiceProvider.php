@@ -35,12 +35,4 @@ class EventServiceProvider extends ServiceProvider
             'App\Listeners\UpdateSubscriptionStatus',
         ],
     ];
-
-    /**
-     * Register any events for your application.
-     */
-    public function boot()
-    {
-        parent::boot();
-    }
 }

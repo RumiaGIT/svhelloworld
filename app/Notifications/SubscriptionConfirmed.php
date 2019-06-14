@@ -15,7 +15,7 @@ class SubscriptionConfirmed extends Notification
      *
      * @var int
      */
-    public $subscription_id;
+    protected $subscription_id;
 
     /**
      * Create a new notification instance.
